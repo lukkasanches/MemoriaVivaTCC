@@ -58,9 +58,9 @@ const CATALOGO_CONQUISTAS = {
 };
 
 // Imagem exibida quando o usuário completa todas as conquistas
-    const IMAGEM_AGRADECIMENTO_GAMIFICACAO = "./img/agradecimento.jpeg";
-
-    const CHAVE_AGRADECIMENTO_VISTO = "mv_agradecimento_completo_visto";
+const IMAGEM_AGRADECIMENTO_GAMIFICACAO = "./img/agradecimento.jpeg";
+const FIGURINHA_AGRADECIMENTO_GAMIFICACAO = "./img/figurinhanatalina.jpeg";
+const CHAVE_AGRADECIMENTO_VISTO = "mv_agradecimento_completo_visto";
 
 function obterConquistasValidas() {
     const salvas = JSON.parse(localStorage.getItem('mv_conquistas') || '{}');
@@ -127,21 +127,21 @@ function abrirModalAgradecimento() {
                 <button type="button" class="btn-wcag" onclick="document.getElementById('modalAgradecimentoOverlay').remove()">✕ Fechar</button>
             </div>
 
-        <img
-            src="${IMAGEM_AGRADECIMENTO_GAMIFICACAO}"
-            alt="Vista panorâmica de Bauru simbolizando a preservação do patrimônio histórico e cultural"
-            class="imagem-agradecimento"
-            onerror="this.style.display='none'"
-        >
+            <img
+                src="${IMAGEM_AGRADECIMENTO_GAMIFICACAO}"
+                alt="Vista panorâmica de Bauru simbolizando a preservação do patrimônio histórico e cultural"
+                class="imagem-agradecimento"
+                onerror="if (!this.dataset.fb) { this.dataset.fb = '1'; this.src = './img/logo.png'; } else { this.style.display = 'none'; }"
+            >
 
-        <a
-            href="./img/figurinhanatalina.jpeg"
-            download="figurinha-natalina.jpeg"
-            class="botao-acao"
-            style="display:block; width:fit-content; margin:15px auto;"
-        >
-            🎄 Baixar Figurinha
-        </a>
+            <a
+                href="${FIGURINHA_AGRADECIMENTO_GAMIFICACAO}"
+                download="figurinha-natalina.jpeg"
+                class="botao-acao"
+                style="display:block; width:fit-content; margin:15px auto;"
+            >
+                🎄 Baixar Figurinha
+            </a>
 
             <h2 style="margin-top:14px; margin-bottom:10px; font-size:1.5rem;">
                 💛 Muito obrigado por valorizar a história de Bauru!
@@ -161,7 +161,6 @@ function abrirModalAgradecimento() {
 
     document.body.appendChild(overlay);
 }
-
 
 function abrirModalConquistas() {
     const modalAgradecimento = document.getElementById('modalAgradecimentoOverlay');
@@ -267,7 +266,8 @@ function atualizarPainelGamificacao() {
         }
     };
 }
-/* 3. BANCO DE DADOS DUBLIN CORE COMPLETO (OS 4 EIXOS + TURISMO + PERSONALIDADES + BAIRROS) */
+
+/* 3. BANCO DE DADOS DUBLIN CORE COMPLETO (OS 4 EIXOS + TURISMO + PERSONALIDADES + BAIRROS + FACULDADES) */
 const acervoDublinCore = [
     {
         dc_identifier: "DC-BAURU-001",
@@ -309,7 +309,7 @@ const acervoDublinCore = [
         dc_coverage_temporal: "1900-1950",
         eixo_documental: "Eixo 1: Institucional e Técnico",
         categoria: "Patrimônio e Monumentos",
-        imagem: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Editatona_Sesc_Bauru_-_Feb_2020_%28016%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original"
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSolHEMrqxJOdt0dTac2zX3rq3DSCrtnwDjZ_c_0xr8qQ&s"
     },
     {
         dc_identifier: "DC-BAURU-004",
@@ -408,10 +408,99 @@ const acervoDublinCore = [
         eixo_documental: "Eixo 4: Comunitário e Afetivo",
         categoria: "Bairros e Regiões",
         imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSez4El_QKwstpSN5ojn4NOlJqWH_QcIskAa0__6O86Ew&s=10"
+    },
+    {
+        dc_identifier: "DC-BAURU-011",
+        dc_title: "USP Bauru (FOB e HRAC-Centrinho)",
+        dc_subject: "Ensino Superior, Odontologia e Saúde",
+        dc_description: "Campus da Universidade de São Paulo em Bauru, referência nacional e internacional em odontologia (FOB) e no tratamento de fissuras labiopalatinas e anomalias craniofaciais (HRAC-Centrinho).",
+        dc_creator: "Universidade de São Paulo",
+        dc_source: "USP Bauru / Acervo Acadêmico",
+        dc_date: "1962-2026",
+        dc_coverage_spatial: "Vila Universitária",
+        dc_coverage_temporal: "1951-1990",
+        eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+        categoria: "Faculdades e Universidades",
+        faculdade: "USP",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxT6kbcY1gMnIo9fZmAjRQGY-CgPh__lPNkBExw9mlyA&s=10"
+    },
+    {
+        dc_identifier: "DC-BAURU-012",
+        dc_title: "UNESP Bauru (FAAC, FEB e FC)",
+        dc_subject: "Ensino Superior, Comunicação, Engenharias e Ciências",
+        dc_description: "Campus da Universidade Estadual Paulista em Bauru, reunindo as faculdades de Arquitetura, Artes e Comunicação (FAAC), Engenharia (FEB) e Ciências (FC) e forte produção de pesquisa e extensão.",
+        dc_creator: "Universidade Estadual Paulista",
+        dc_source: "Repositório Institucional UNESP",
+        dc_date: "1976-2026",
+        dc_coverage_spatial: "Vila Universitária",
+        dc_coverage_temporal: "1951-1990",
+        eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+        categoria: "Faculdades e Universidades",
+        faculdade: "UNESP",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScT3dF3KqZrMBUUWgkdAtlt_Z55i896qkvHaSQUOPje0vZxruVWD4lvhnb&s=10"
+    },
+    {
+        dc_identifier: "DC-BAURU-013",
+        dc_title: "Unisagrado (Antiga USC — Universidade do Sagrado Coração)",
+        dc_subject: "Educação Superior e História Local",
+        dc_description: "Tradicional instituição de ensino superior de Bauru, originada da Universidade do Sagrado Coração (USC), com forte presença na formação de profissionais de saúde, humanas, exatas e sociais.",
+        dc_creator: "Unisagrado",
+        dc_source: "Acervo Histórico e Acadêmico de Bauru",
+        dc_date: "1953-2026",
+        dc_coverage_spatial: "Jardim América",
+        dc_coverage_temporal: "1951-1990",
+        eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+        categoria: "Faculdades e Universidades",
+        faculdade: "USC / Unisagrado",
+        imagem: "https://socialbauru.com.br/wp-content/uploads/2024/05/unisagrado-bauru-cursos-2021.jpg"
+    },
+    {
+        dc_identifier: "DC-BAURU-014",
+        dc_title: "ITE — Instituição Toledo de Ensino",
+        dc_subject: "Ensino Jurídico e Acadêmico",
+        dc_description: "Instituição tradicional de ensino superior de Bauru, amplamente reconhecida na região pela formação jurídica e pela participação na vida acadêmica e cultural do município.",
+        dc_creator: "Instituição Toledo de Ensino",
+        dc_source: "Memória Acadêmica de Bauru",
+        dc_date: "1952-2026",
+        dc_coverage_spatial: "Vila Coralina",
+        dc_coverage_temporal: "1951-1990",
+        eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+        categoria: "Faculdades e Universidades",
+        faculdade: "ITE",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQscI3fly6qz_ybh6FDQAYT0Oa1Lge20deMOClCmiemnw&s=10"
+    },
+    {
+        dc_identifier: "DC-BAURU-015",
+        dc_title: "Fatec Bauru e Polo de Ensino Superior e Técnico",
+        dc_subject: "Educação Tecnológica e Profissional",
+        dc_description: "Faculdade de Tecnologia do Estado de São Paulo em Bauru, voltada à formação tecnológica superior e ao desenvolvimento profissional da região.",
+        dc_creator: "Centro Paula Souza / Fatec Bauru",
+        dc_source: "Portal Educacional de Bauru",
+        dc_date: "2000-2026",
+        dc_coverage_spatial: "Jardim Panorama",
+        dc_coverage_temporal: "1991-Atualidade",
+        eixo_documental: "Eixo 1: Institucional e Técnico",
+        categoria: "Faculdades e Universidades",
+        faculdade: "Fatec",
+        imagem: "https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/51/2023/08/WhatsApp-Image-2021-08-12-at-16.49.19.jpeg"
+    },
+    {
+        dc_identifier: "DC-BAURU-016",
+        dc_title: "Jardim Bela Vista, Jardim Panorama e Vila Coralina",
+        dc_subject: "Bairros, Crescimento Urbano e Cotidiano",
+        dc_description: "Bairros que integram a malha urbana de Bauru e refletem a expansão residencial, comercial e estudantil da cidade ao longo das últimas décadas.",
+        dc_creator: "Comunidade Bauruense",
+        dc_source: "Prefeitura Municipal de Bauru / Bauru de Antigamente",
+        dc_date: "1950-2026",
+        dc_coverage_spatial: "Jardim Bela Vista",
+        dc_coverage_temporal: "1951-1990",
+        eixo_documental: "Eixo 4: Comunitário e Afetivo",
+        categoria: "Bairros e Regiões",
+        faculdade: "Instituição de Ensino Técnico e Superior",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSez4El_QKwstpSN5ojn4NOlJqWH_QcIskAa0__6O86Ew&s=10"
     }
 ];
 
-/* 4. AVALIAÇÃO POR ESTRELAS E COMENTÁRIOS */
 /* 4. AVALIAÇÃO POR ESTRELAS (1 A 5 ESTRELAS SEM VOTOS INFINITOS) */
 function obterAvaliacao(id) {
     const salvas = JSON.parse(localStorage.getItem('mv_avaliacoes') || '{}');
@@ -431,10 +520,8 @@ function votarEstrela(id, notaEscolhida) {
     const votoAnterior = meusVotos[id];
 
     if (votoAnterior) {
-        // Usuário já votou neste item: apenas substitui a nota anterior pela nova, sem aumentar o número de votos!
         atual.soma = atual.soma - votoAnterior + notaEscolhida;
     } else {
-        // Primeiro voto deste usuário neste item: soma a nota e incrementa 1 único voto
         atual.soma += notaEscolhida;
         atual.votos += 1;
     }
@@ -445,7 +532,7 @@ function votarEstrela(id, notaEscolhida) {
     localStorage.setItem('mv_avaliacoes', JSON.stringify(salvas));
     localStorage.setItem('mv_meus_votos', JSON.stringify(meusVotos));
 
-    registrarConquista('avaliador', 'Avaliador do Patrimônio');
+    registrarConquista('avaliador');
     if (typeof renderizarCatalogo === 'function') renderizarCatalogo();
 }
 
@@ -519,7 +606,6 @@ async function gerarHtmlMidiaRelato(r, compacto = false) {
     let src = (r.midia_url || '').trim();
     let tipo = r.midia_tipo || '';
 
-    // Se não houver URL externa/servidor, busca o arquivo salvo no IndexedDB
     if (!src && r.midia_local_id) {
         const arquivo = await buscarArquivoLocal(r.midia_local_id);
         if (arquivo) {

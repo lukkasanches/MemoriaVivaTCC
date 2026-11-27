@@ -650,3 +650,19 @@ body.alto-contraste .preview-midia-box {
     border: 2px dashed #ffeb3b !important;
     color: #ffffff !important;
 }
+/* IMAGEM DE AGRADECIMENTO DA GAMIFICAÇÃO (PADRÃO DO INDEX) */
+.imagem-agradecimento {
+    display: block;
+    width: 50%;
+    max-width: 500px;
+    height: auto;
+    margin: 15px auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .imagem-agradecimento {
+        width: 100%;
+    }
+}
