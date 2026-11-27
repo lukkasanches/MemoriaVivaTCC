@@ -127,12 +127,21 @@ function abrirModalAgradecimento() {
                 <button type="button" class="btn-wcag" onclick="document.getElementById('modalAgradecimentoOverlay').remove()">✕ Fechar</button>
             </div>
 
-            <img
-                src="${IMAGEM_AGRADECIMENTO_GAMIFICACAO}"
-                alt="Vista panorâmica de Bauru simbolizando a preservação do patrimônio histórico e cultural"
-                class="imagem-agradecimento"
-                onerror="this.style.display='none'"
-            >
+        <img
+            src="${IMAGEM_AGRADECIMENTO_GAMIFICACAO}"
+            alt="Vista panorâmica de Bauru simbolizando a preservação do patrimônio histórico e cultural"
+            class="imagem-agradecimento"
+            onerror="this.style.display='none'"
+        >
+
+        <a
+            href="./img/figurinhanatalina.jpeg"
+            download="figurinha-natalina.jpeg"
+            class="botao-acao"
+            style="display:block; width:fit-content; margin:15px auto;"
+        >
+            🎄 Baixar Figurinha
+        </a>
 
             <h2 style="margin-top:14px; margin-bottom:10px; font-size:1.5rem;">
                 💛 Muito obrigado por valorizar a história de Bauru!
