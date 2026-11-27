@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo - Memória Viva Bauru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="barra-acessibilidade" role="region" aria-label="Opções de Acessibilidade WCAG">
+        <div class="wcag-controles">
+            <span><strong>Acessibilidade (WCAG 2.2):</strong></span>
+            <button class="btn-wcag" onclick="alterarFonte(2)">A+ Aumentar Texto</button>
+            <button class="btn-wcag" onclick="alterarFonte(-2)">A- Diminuir Texto</button>
+            <button class="btn-wcag" onclick="alternarAltoContraste()">⚡ Alto Contraste</button>
+        </div>
+        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/5</div>
+    </div>
+
+    <header>
+        <h1>Quiz Interativo: Educação Patrimonial</h1>
+        <p>Teste seus conhecimentos sobre a história, ferrovia, cultura e personalidades de Bauru</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu Principal">
+        <a href="index.html">Início</a>
+        <a href="historia.html">História</a>
+        <a href="acervo.html">Acervo & Mapa</a>
+        <a href="colaborar.html">Comunidade</a>
+        <a href="curadoria.html">Painel de Curadoria</a>
+        <a href="quiz.html" class="ativo">Quiz</a>
+    </nav>
+
+    <main>
+        <section class="card-panel">
+            <h2>Desafio Histórico de Bauru (10 Questões)</h2>
+            <form id="formQuiz" onsubmit="mostrarGabarito(event)">
+
+                <div class="box-destaque">
+                    <h3>1. Em que ano Bauru conquistou sua emancipação política?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q1" value="a" required style="width:auto;"> a) 1896</label>
+                    <label class="d-block my-1"><input type="radio" name="q1" value="b" style="width:auto;"> b) 1905</label>
+                    <label class="d-block my-1"><input type="radio" name="q1" value="c" style="width:auto;"> c) 1937</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>2. Qual foi o principal motor de crescimento no início do século XX?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q2" value="a" required style="width:auto;"> a) Entroncamento das ferrovias</label>
+                    <label class="d-block my-1"><input type="radio" name="q2" value="b" style="width:auto;"> b) Construção de porto marítimo</label>
+                    <label class="d-block my-1"><input type="radio" name="q2" value="c" style="width:auto;"> c) Extração de petróleo</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>3. Quem criou a receita do famoso Sanduíche Bauru em 1937?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q3" value="a" required style="width:auto;"> a) Pelé</label>
+                    <label class="d-block my-1"><input type="radio" name="q3" value="b" style="width:auto;"> b) Casimiro Pinto Neto</label>
+                    <label class="d-block my-1"><input type="radio" name="q3" value="c" style="width:auto;"> c) Ozires Silva</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>4. Qual é o apelido carinhoso atribuído à cidade?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q4" value="a" required style="width:auto;"> a) Cidade Jardim</label>
+                    <label class="d-block my-1"><input type="radio" name="q4" value="b" style="width:auto;"> b) A Cidade Sem Limites</label>
+                    <label class="d-block my-1"><input type="radio" name="q4" value="c" style="width:auto;"> c) Cidade do Sol</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>5. Qual bauruense famoso tornou-se o primeiro astronauta brasileiro?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q5" value="a" required style="width:auto;"> a) Marcos Pontes</label>
+                    <label class="d-block my-1"><input type="radio" name="q5" value="b" style="width:auto;"> b) Santos Dumont</label>
+                    <label class="d-block my-1"><input type="radio" name="q5" value="c" style="width:auto;"> c) Casimiro Pinto Neto</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>6. Em qual time bauruense o jovem Pelé deu seus primeiros passos no futebol?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q6" value="a" required style="width:auto;"> a) Bauru Atlético Clube (BAC)</label>
+                    <label class="d-block my-1"><input type="radio" name="q6" value="b" style="width:auto;"> b) Esporte Clube Noroeste</label>
+                    <label class="d-block my-1"><input type="radio" name="q6" value="c" style="width:auto;"> c) Corinthians de Bauru</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>7. Qual engenheiro ligado ao Aeroclube de Bauru foi o fundador da Embraer?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q7" value="a" required style="width:auto;"> a) Ozires Silva</label>
+                    <label class="d-block my-1"><input type="radio" name="q7" value="b" style="width:auto;"> b) Marcos Pontes</label>
+                    <label class="d-block my-1"><input type="radio" name="q7" value="c" style="width:auto;"> c) Casimiro Pinto Neto</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>8. Qual povo indígena habitava originalmente a região de Bauru?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q8" value="a" required style="width:auto;"> a) Kaingangs (Coroados)</label>
+                    <label class="d-block my-1"><input type="radio" name="q8" value="b" style="width:auto;"> b) Yanomamis</label>
+                    <label class="d-block my-1"><input type="radio" name="q8" value="c" style="width:auto;"> c) Caiapós</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>9. Qual o nome da principal ferrovia sediada na Estação Central de Bauru?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q9" value="a" required style="width:auto;"> a) Estrada de Ferro Noroeste do Brasil (NOB)</label>
+                    <label class="d-block my-1"><input type="radio" name="q9" value="b" style="width:auto;"> b) Transiberiana</label>
+                    <label class="d-block my-1"><input type="radio" name="q9" value="c" style="width:auto;"> c) Vitória a Minas</label>
+                </div>
+
+                <div class="box-destaque">
+                    <h3>10. Quais importantes universidades públicas estaduais têm campus de destaque em Bauru?</h3>
+                    <label class="d-block my-1"><input type="radio" name="q10" value="a" required style="width:auto;"> a) Universidade de São Paulo (USP) e UNESP</label>
+                    <label class="d-block my-1"><input type="radio" name="q10" value="b" style="width:auto;"> b) Universidade de Brasília (UnB)</label>
+                    <label class="d-block my-1"><input type="radio" name="q10" value="c" style="width:auto;"> c) UFRJ</label>
+                </div>
+
+                <button type="submit" class="botao-acao w-100 mt-3">Corrigir Respostas e Ver Gabarito Oficial</button>
+            </form>
+
+            <!-- GABARITO COMENTADO -->
+            <div id="gabarito" style="display:none; margin-top: 30px;" class="card-panel">
+                <h2 id="placarFinal">Resultado do Quiz</h2>
+                <div class="grid-cards">
+                    <div class="box-destaque">1. Emancipação: <strong>a) 1º de agosto de 1896</strong></div>
+                    <div class="box-destaque">2. Motor de crescimento: <strong>a) Entroncamento das ferrovias (NOB, Paulista e Sorocabana)</strong></div>
+                    <div class="box-destaque">3. Criador do Sanduíche Bauru: <strong>b) Casimiro Pinto Neto (1937)</strong></div>
+                    <div class="box-destaque">4. Apelido: <strong>b) A Cidade Sem Limites</strong></div>
+                    <div class="box-destaque">5. Astronauta: <strong>a) Marcos Pontes (2006)</strong></div>
+                    <div class="box-destaque">6. Time de infância do Pelé: <strong>a) Bauru Atlético Clube (BAC)</strong></div>
+                    <div class="box-destaque">7. Fundador da Embraer: <strong>a) Ozires Silva</strong></div>
+                    <div class="box-destaque">8. Povo originário: <strong>a) Kaingangs (Coroados)</strong></div>
+                    <div class="box-destaque">9. Ferrovia histórica: <strong>a) Estrada de Ferro Noroeste do Brasil (NOB)</strong></div>
+                    <div class="box-destaque">10. Universidades públicas: <strong>a) USP e UNESP</strong></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Projeto Memória Viva — Quiz Interativo de Educação Patrimonial</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function mostrarGabarito(e) {
+            e.preventDefault();
+            const corretas = { q1:'a', q2:'a', q3:'b', q4:'b', q5:'a', q6:'a', q7:'a', q8:'a', q9:'a', q10:'a' };
+            let acertos = 0;
+            for (let q in corretas) {
+                const marcada = document.querySelector(`input[name="${q}"]:checked`);
+                if (marcada && marcada.value === corretas[q]) acertos++;
+            }
+            const gabaritoDiv = document.getElementById('gabarito');
+            gabaritoDiv.style.display = 'block';
+            document.getElementById('placarFinal').innerHTML = `🎉 Você acertou <strong>${acertos} de 10</strong> questões! Confira o Gabarito Oficial:`;
+            registrarConquista('mestre_quiz', 'Mestre do Quiz de Bauru');
+            gabaritoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

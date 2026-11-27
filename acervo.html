@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo Dublin Core & Mapa - Memória Viva Bauru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="barra-acessibilidade" role="region" aria-label="Opções de Acessibilidade WCAG">
+        <div class="wcag-controles">
+            <span><strong>Acessibilidade (WCAG 2.2):</strong></span>
+            <button class="btn-wcag" onclick="alterarFonte(2)">A+ Aumentar Texto</button>
+            <button class="btn-wcag" onclick="alterarFonte(-2)">A- Diminuir Texto</button>
+            <button class="btn-wcag" onclick="alternarAltoContraste()">⚡ Alto Contraste</button>
+        </div>
+        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/5</div>
+    </div>
+
+    <header>
+        <h1>Acervo Histórico, Turismo e Personalidades</h1>
+        <p>Catalogação integrada no padrão internacional de metadados Dublin Core com geolocalização e avaliação comunitária</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu Principal">
+        <a href="index.html">Início</a>
+        <a href="historia.html">História</a>
+        <a href="acervo.html" class="ativo">Acervo & Mapa</a>
+        <a href="colaborar.html">Comunidade</a>
+        <a href="curadoria.html">Painel de Curadoria</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+
+    <main>
+        <!-- SISTEMA DE BUSCA E FILTROS MULTIDIMENSIONAIS -->
+        <section class="card-panel">
+            <h2>Pesquisar e Filtrar no Acervo (Padrão Dublin Core)</h2>
+            <p>Utilize os filtros abaixo para localizar monumentos, personalidades, pontos turísticos, bairros e documentos dos 4 eixos:</p>
+
+            <div class="filtros-grid">
+                <div>
+                    <label for="filtroTexto"><strong>Palavra-chave:</strong></label>
+                    <input type="text" id="filtroTexto" placeholder="Ex: Pelé, Ferrovia, Sanduíche, USP..." oninput="renderizarCatalogo()">
+                </div>
+                <div>
+                    <label for="filtroCategoria"><strong>Tema / Categoria:</strong></label>
+                    <select id="filtroCategoria" onchange="renderizarCatalogo()">
+                        <option value="todos">Todas as Categorias</option>
+                        <option value="Patrimônio e Monumentos">Patrimônio e Monumentos</option>
+                        <option value="Personalidades">Personalidades Ligadas a Bauru</option>
+                        <option value="Pontos Turísticos">Pontos Turísticos</option>
+                        <option value="Bairros e Regiões">Bairros e Regiões</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filtroBairro"><strong>Bairro / Localização:</strong></label>
+                    <select id="filtroBairro" onchange="renderizarCatalogo()">
+                        <option value="todos">Todos os Bairros</option>
+                        <option value="Centro">Centro Histórico</option>
+                        <option value="Altos da Cidade">Altos da Cidade</option>
+                        <option value="Vila Universitária">Vila Universitária</option>
+                        <option value="Jardim Estoril">Jardim Estoril / Jardim Europa</option>
+                        <option value="Vila Falcão / Tibiriçá">Vila Falcão / Tibiriçá (Periferia e Distritos)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filtroEixo"><strong>Eixo Documental:</strong></label>
+                    <select id="filtroEixo" onchange="renderizarCatalogo()">
+                        <option value="todos">Todos os 4 Eixos</option>
+                        <option value="Eixo 1: Institucional e Técnico">Eixo 1: Institucional (CODEPAC/IPHAN)</option>
+                        <option value="Eixo 2: Acadêmico e de Preservação">Eixo 2: Acadêmico (UNESP/USP/Museus)</option>
+                        <option value="Eixo 3: Midiático e de Entretenimento">Eixo 3: Midiático (Imprensa Local)</option>
+                        <option value="Eixo 4: Comunitário e Afetivo">Eixo 4: Comunitário (Memória Afetiva)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="gridCatalogo" class="grid-cards"></div>
+        </section>
+
+        <!-- MAPA INTERATIVO COM GEOLOCALIZAÇÃO -->
+        <section class="card-panel" id="mapa-patrimonio">
+            <h2>Mapa Interativo do Patrimônio Histórico e Cultural</h2>
+            <p>Selecione um ponto de interesse abaixo para visualizar sua geolocalização exata em Bauru:</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <button class="botao-acao" onclick="mudarMapa('Estacao+Ferroviaria+Bauru+SP')">📍 Estação Ferroviária Central (NOB)</button>
+                <button class="botao-acao" onclick="mudarMapa('Praca+Machado+de+Melo+Bauru+SP')">📍 Praça Machado de Melo & Calçadão</button>
+                <button class="botao-acao" onclick="mudarMapa('Parque+Vitoria+Regia+Bauru+SP')">📍 Parque Vitória Régia</button>
+                <button class="botao-acao" onclick="mudarMapa('Zoologico+Municipal+de+Bauru+SP')">📍 Zoológico & Jardim Botânico</button>
+                <button class="botao-acao" onclick="mudarMapa('SESC+Bauru+SP')">📍 SESC Bauru</button>
+            </div>
+            <div class="map-frame">
+                <iframe
+                    id="iframeMapa"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.7826490138154!2d-49.08147152394996!3d-22.32405841730661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bf67f005995f23%3A0xe5ba4609c9c38905!2zRXN0YcOnw6NvIEZlcnJvdmnDoXJpYSBCYXVydSAtIFNQ!5e0!3m2!1spt-BR!2sbr!4v1786479410506!5m2!1spt-BR!2sbr"
+                    width="100%"
+                    height="400"
+                    style="border:0; border-radius: 10px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    title="Mapa Geolocalizado dos Patrimônios de Bauru">
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Projeto Memória Viva — Catalogação Dublin Core e Educação Patrimonial de Bauru</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function renderizarCatalogo() {
+            const texto = document.getElementById('filtroTexto').value.toLowerCase();
+            const categoria = document.getElementById('filtroCategoria').value;
+            const bairro = document.getElementById('filtroBairro').value;
+            const eixo = document.getElementById('filtroEixo').value;
+            const container = document.getElementById('gridCatalogo');
+
+            const filtrados = acervoDublinCore.filter(item => {
+                const bateTexto = item.dc_title.toLowerCase().includes(texto) ||
+                                  item.dc_description.toLowerCase().includes(texto) ||
+                                  item.dc_source.toLowerCase().includes(texto);
+                const bateCat = categoria === 'todos' || item.categoria === categoria;
+                const bateBairro = bairro === 'todos' || item.dc_coverage_spatial === bairro;
+                const bateEixo = eixo === 'todos' || item.eixo_documental === eixo;
+                return bateTexto && bateCat && bateBairro && bateEixo;
+            });
+
+            if (filtrados.length === 0) {
+                container.innerHTML = `<p>Nenhum registro encontrado para os filtros selecionados.</p>`;
+                return;
+            }
+
+        container.innerHTML = filtrados.map(item => {
+                const av = obterAvaliacao(item.dc_identifier);
+                const meuVoto = obterMeuVoto(item.dc_identifier);
+                const media = (av.soma / av.votos).toFixed(1);
+
+                // Gera as 5 estrelas clicáveis (de 1 a 5)
+                let botoesEstrelas = '';
+                for (let n = 1; n <= 5; n++) {
+                    const preenchida = meuVoto ? (n <= meuVoto) : false;
+                    const simbolo = preenchida ? '★' : '☆';
+                    botoesEstrelas += `<button class="btn-estrela" onclick="votarEstrela('${item.dc_identifier}', ${n})" title="Dar ${n} estrela(s)" aria-label="Avaliar com ${n} estrelas">${simbolo}</button>`;
+                }
+
+                return `
+                <article class="card-item">
+                    <img src="${item.imagem}" alt="${item.dc_title}">
+                    <div class="card-item-content">
+                        <span class="ano-tag">${item.dc_coverage_spatial} • ${item.dc_date}</span>
+                        <h3>${item.dc_title}</h3>
+                        <p>${item.dc_description}</p>
+                        <div class="mt-2 mb-2" style="font-size: 0.85rem; color: var(--text-light);">
+                            <div><strong>Eixo:</strong> ${item.eixo_documental}</div>
+                            <div><strong>Fonte (Dublin Core):</strong> ${item.dc_source}</div>
+                            <div><strong>ID:</strong> ${item.dc_identifier}</div>
+                        </div>
+                        <div class="estrelas-box">
+                            <span>⭐ <strong>${media}</strong> (${av.votos} ${av.votos === 1 ? 'avaliação' : 'avaliações'})</span>
+                            <div>
+                                ${botoesEstrelas}
+                                ${meuVoto ? `<small style="display:block; font-size:0.75rem; text-align:right;">Sua nota: ${meuVoto}★</small>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                `;
+            }).join('');
+        }
+
+        function mudarMapa(consulta) {
+            document.getElementById('iframeMapa').src = `https://www.google.com/maps?q=${consulta}&output=embed`;
+        }
+
+        window.addEventListener('DOMContentLoaded', renderizarCatalogo);
+    </script>
+</body>
+</html>

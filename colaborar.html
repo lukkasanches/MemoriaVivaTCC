@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participação Cidadã (Crowdsourcing) - Memória Viva Bauru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="barra-acessibilidade" role="region" aria-label="Opções de Acessibilidade WCAG">
+        <div class="wcag-controles">
+            <span><strong>Acessibilidade (WCAG 2.2):</strong></span>
+            <button class="btn-wcag" onclick="alterarFonte(2)">A+ Aumentar Texto</button>
+            <button class="btn-wcag" onclick="alterarFonte(-2)">A- Diminuir Texto</button>
+            <button class="btn-wcag" onclick="alternarAltoContraste()">⚡ Alto Contraste</button>
+        </div>
+        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/5</div>
+    </div>
+
+    <header>
+        <h1>Memória Coletiva e Participação Cidadã</h1>
+        <p>Espaço de Crowdsourcing para moradores compartilharem histórias orais, fotografias antigas e acervos de família</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu Principal">
+        <a href="index.html">Início</a>
+        <a href="historia.html">História</a>
+        <a href="acervo.html">Acervo & Mapa</a>
+        <a href="colaborar.html" class="ativo">Comunidade</a>
+        <a href="curadoria.html">Painel de Curadoria</a>
+        <a href="quiz.html">Quiz Interativo</a>
+    </nav>
+
+    <main>
+        <!-- FORMULÁRIO DE ENVIO COM LGPD -->
+        <section class="card-panel">
+            <h2>Envie sua Memória de Bauru para a Curadoria</h2>
+            <p>
+                A história de Bauru vive nas lembranças de seus moradores (Bosi, 1994; Halbwachs, 2006). Preencha o formulário abaixo para enviar seu relato ou fotografia. Para garantir a veracidade histórica e a segurança do portal, todo material passa pela <strong>Curadoria</strong> antes de ser publicado no mural oficial.
+            </p>
+
+            <div id="alertaEnvio" style="display:none;" class="box-destaque"></div>
+
+            <form id="formColaboracao" onsubmit="enviarRelatoComunitario(event)">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="autor"><strong>Nome Completo (Para crédito de autoria):</strong></label>
+                        <input type="text" id="autor" required placeholder="Ex: Maria Aparecida Silva">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email"><strong>Seu E-mail (Protegido pela LGPD):</strong></label>
+                        <input type="email" id="email" required placeholder="seuemail@exemplo.com">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="perfil"><strong>Seu Vínculo com Bauru:</strong></label>
+                        <select id="perfil" required>
+                            <option value="Morador">Morador de Bauru</option>
+                            <option value="Morador Idoso (Memória Viva)">Morador Idoso (Memória Oral)</option>
+                            <option value="Estudante">Estudante</option>
+                            <option value="Professor/Pesquisador">Professor / Pesquisador</option>
+                            <option value="Visitante/Turista">Visitante / Turista</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="bairro"><strong>Bairro ou Local Histórico:</strong></label>
+                        <input type="text" id="bairro" required placeholder="Ex: Centro, Vila Falcão, Tibiriçá...">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="periodo"><strong>Década ou Ano Aproximado:</strong></label>
+                        <input type="text" id="periodo" required placeholder="Ex: Década de 1960">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="tituloMemoria"><strong>Título da Memória ou Fotografia:</strong></label>
+                        <input type="text" id="tituloMemoria" required placeholder="Ex: Os desfiles de 1º de Agosto na Batista de Carvalho">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="relato"><strong>Seu Relato Histórico / História Oral:</strong></label>
+                        <textarea id="relato" rows="4" required placeholder="Conte sua lembrança, detalhes do local e das pessoas envolvidas..."></textarea>
+                    </div>
+                      <div class="col-md-12">
+                        <label><strong>Anexar Fotografia, Vídeo ou Áudio do seu dispositivo (Opcional):</strong></label>
+                        <div id="dropZone" class="drop-zone" role="button" tabindex="0" aria-label="Arraste um arquivo aqui ou clique para selecionar imagem, vídeo ou áudio">
+                            <div class="drop-zone-icone">📁🖼️🎬🎙️</div>
+                            <p class="mb-1"><strong>Arraste e solte um arquivo aqui</strong> ou clique para escolher do computador/celular</p>
+                            <small>Formatos aceitos: Imagens (JPG, PNG, WEBP), Vídeos (MP4, WEBM) e Áudios (MP3, WAV, OGG)</small>
+                            <input type="file" id="arquivoMidia" accept="image/*,video/*,audio/*" style="display:none;">
+                        </div>
+                        <div id="previewMidia" class="preview-midia-box" style="display:none;"></div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="midiaUrl"><strong>Ou cole um link direto da internet (Opcional — YouTube ou link direto de imagem/vídeo/áudio):</strong></label>
+                        <input type="url" id="midiaUrl" placeholder="Ex: https://youtu.be/... ou https://site.com/foto.jpg">
+                    </div>
+                    <div class="col-md-12">
+                        <div class="box-destaque">
+                            <label class="d-flex align-items-start gap-2" style="cursor:pointer;">
+                                <input type="checkbox" id="aceiteLgpd" required style="width:22px; height:22px; margin-top:4px;">
+                                <span>
+                                    <strong>Termo de Consentimento LGPD e Cessão de Direitos Autorais:</strong> Declaro ser titular ou detentor dos direitos do relato/imagem enviado e autorizo sua divulgação gratuita, com a devida identificação de autoria, para fins educativos, históricos e culturais na plataforma <em>Memória Viva</em>, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="botao-acao">Enviar Relato para Análise da Curadoria</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- MURAL DE RELATOS APROVADOS PELA CURADORIA -->
+        <section class="card-panel">
+            <h2>Mural da Comunidade (Relatos Verificados pela Curadoria)</h2>
+            <p>Memórias enviadas por cidadãos bauruenses e já validadas pela equipe curadora:</p>
+            <div id="muralRelatos" class="grid-cards"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Projeto Memória Viva — Crowdsourcing Cultural e Conformidade com a LGPD</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        let arquivoSelecionado = null;
+
+        const relatosIniciais = [
+            {
+                id: 101,
+                autor: "Sr. Benedito Ferroviário",
+                perfil_usuario: "Morador Idoso (Memória Oral)",
+                titulo_memoria: "O apito da Maria-Fumaça na Estação Central",
+                bairro_referencia: "Centro",
+                periodo_historico: "Década de 1950",
+                relato: "Trabalhei na Estrada de Ferro Noroeste do Brasil (NOB) nos anos 1950. A Praça Machado de Melo ficava repleta de famílias e viajantes esperando os trens que seguiam rumo ao Mato Grosso.",
+                midia_url: "",
+                status_curadoria: "aprovado"
+            },
+            {
+                id: 102,
+                autor: "Profa. Helena Martins",
+                perfil_usuario: "Professor / Pesquisador",
+                titulo_memoria: "As feiras e os encontros na Vila Falcão",
+                bairro_referencia: "Vila Falcão",
+                periodo_historico: "Década de 1970",
+                relato: "A Vila Falcão cresceu com a força das famílias ferroviárias. Nos anos 1970, os domingos eram marcados pela convivência comunitária nas praças e pelo comércio tradicional do bairro.",
+                midia_url: "",
+                status_curadoria: "aprovado"
+            }
+        ];
+
+        // CONFIGURAÇÃO DA ZONA DE ARRASTAR E SOLTAR (DRAG & DROP)
+        const dropZone = document.getElementById('dropZone');
+        const inputArquivo = document.getElementById('arquivoMidia');
+        const previewBox = document.getElementById('previewMidia');
+
+        dropZone.addEventListener('click', () => inputArquivo.click());
+        dropZone.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                inputArquivo.click();
+            }
+        });
+
+        ['dragenter', 'dragover'].forEach(evt => {
+            dropZone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.add('arrastando');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(evt => {
+            dropZone.addEventListener(evt, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.remove('arrastando');
+            });
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                processarArquivo(e.dataTransfer.files[0]);
+            }
+        });
+
+        inputArquivo.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+                processarArquivo(e.target.files[0]);
+            }
+        });
+
+        function processarArquivo(file) {
+            if (!file.type.startsWith('image/') && !file.type.startsWith('video/') && !file.type.startsWith('audio/')) {
+                alert('Formato não suportado. Selecione uma imagem, vídeo ou áudio.');
+                return;
+            }
+            arquivoSelecionado = file;
+            const urlTemp = URL.createObjectURL(file);
+            let tagPreview = '';
+
+            if (file.type.startsWith('image/')) {
+                tagPreview = `<img src="${urlTemp}" alt="Pré-visualização" class="midia-relato-img" style="margin:0 auto; max-width:320px;">`;
+            } else if (file.type.startsWith('video/')) {
+                tagPreview = `<video src="${urlTemp}" controls class="midia-relato-video" style="max-width:360px;"></video>`;
+            } else if (file.type.startsWith('audio/')) {
+                tagPreview = `<audio src="${urlTemp}" controls class="midia-relato-audio"></audio>`;
+            }
+
+            previewBox.style.display = 'block';
+            previewBox.innerHTML = `
+                <p class="mb-2"><strong>Arquivo pronto para envio:</strong> ${file.name}</p>
+                ${tagPreview}
+                <div class="mt-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="limparArquivoSelecionado()">✕ Remover arquivo</button>
+                </div>
+            `;
+        }
+
+        function limparArquivoSelecionado() {
+            arquivoSelecionado = null;
+            inputArquivo.value = '';
+            previewBox.style.display = 'none';
+            previewBox.innerHTML = '';
+        }
+
+        function obterRelatosLocais() {
+            const salvos = localStorage.getItem('mv_relatos_comunidade');
+            if (!salvos) {
+                localStorage.setItem('mv_relatos_comunidade', JSON.stringify(relatosIniciais));
+                return relatosIniciais;
+            }
+            return JSON.parse(salvos);
+        }
+
+        async function carregarMuralAprovados() {
+            let listaAprovados = [];
+            try {
+                const resp = await fetch('api_relatos.php?acao=listar_aprovados');
+                if (resp.ok) {
+                    listaAprovados = await resp.json();
+                } else {
+                    throw new Error("Usando armazenamento local");
+                }
+            } catch (e) {
+                listaAprovados = obterRelatosLocais().filter(r => r.status_curadoria === 'aprovado');
+            }
+
+            const mural = document.getElementById('muralRelatos');
+            const cardsHtml = await Promise.all(listaAprovados.map(async (r) => {
+                const midiaHtml = await gerarHtmlMidiaRelato(r, false);
+                return `
+                    <article class="card-item">
+                        <div class="card-item-content">
+                            <span class="ano-tag">${r.bairro_referencia} • ${r.periodo_historico}</span>
+                            <h3>${r.titulo_memoria}</h3>
+                            ${midiaHtml}
+                            <p>"${r.relato}"</p>
+                            <div class="mt-auto pt-2" style="border-top:1px solid #eee; font-size:0.9rem;">
+                                <strong>Autoria verificada:</strong> ${r.autor} (${r.perfil_usuario})
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }));
+            mural.innerHTML = cardsHtml.join('');
+        }
+
+        async function enviarRelatoComunitario(e) {
+            e.preventDefault();
+
+            let midiaLocalId = '';
+            let midiaTipo = '';
+            let midiaUrl = document.getElementById('midiaUrl').value.trim();
+
+            if (arquivoSelecionado) {
+                midiaLocalId = 'midia_' + Date.now();
+                if (arquivoSelecionado.type.startsWith('video/')) midiaTipo = 'video';
+                else if (arquivoSelecionado.type.startsWith('audio/')) midiaTipo = 'audio';
+                else midiaTipo = 'imagem';
+
+                await salvarArquivoLocal(midiaLocalId, arquivoSelecionado);
+            } else if (midiaUrl) {
+                midiaTipo = detectarTipoMidia(midiaUrl, '');
+            }
+
+            const novo = {
+                id: Date.now(),
+                autor: document.getElementById('autor').value,
+                email: document.getElementById('email').value,
+                perfil_usuario: document.getElementById('perfil').value,
+                bairro_referencia: document.getElementById('bairro').value,
+                periodo_historico: document.getElementById('periodo').value,
+                titulo_memoria: document.getElementById('tituloMemoria').value,
+                relato: document.getElementById('relato').value,
+                midia_url: midiaUrl,
+                midia_local_id: midiaLocalId,
+                midia_tipo: midiaTipo,
+                status_curadoria: 'pendente'
+            };
+
+            // Tenta enviar para o PHP/MySQL (com upload real de arquivo se XAMPP estiver ligado)
+            try {
+                const formData = new FormData();
+                Object.keys(novo).forEach(k => formData.append(k, novo[k]));
+                if (arquivoSelecionado) {
+                    formData.append('arquivo_midia', arquivoSelecionado);
+                }
+                const resp = await fetch('api_relatos.php?acao=novo_relato', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (resp.ok) {
+                    const retorno = await resp.json();
+                    if (retorno.midia_url) novo.midia_url = retorno.midia_url;
+                }
+            } catch (err) {}
+
+            // Mantém também salvo no armazenamento local para funcionar offline/GitHub Pages
+            const atuais = obterRelatosLocais();
+            atuais.unshift(novo);
+            localStorage.setItem('mv_relatos_comunidade', JSON.stringify(atuais));
+
+            registrarConquista('colaborador');
+            document.getElementById('formColaboracao').reset();
+            limparArquivoSelecionado();
+
+            const alerta = document.getElementById('alertaEnvio');
+            alerta.style.display = 'block';
+            alerta.innerHTML = `✅ <strong>Relato e mídia enviados com sucesso!</strong> Sua contribuição já pode ser conferida e aprovada na aba <a href="curadoria.html">Painel de Curadoria</a>.`;
+        }
+
+        window.addEventListener('DOMContentLoaded', carregarMuralAprovados);
+    </script>
+
+</body>
+</html>

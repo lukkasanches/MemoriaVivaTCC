@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memória Viva - Patrimônio Histórico-Cultural de Bauru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barra de Acessibilidade WCAG 2.2 e Gamificação -->
+    <div class="barra-acessibilidade" role="region" aria-label="Opções de Acessibilidade WCAG e Conquistas">
+        <div class="wcag-controles">
+            <span><strong>Acessibilidade</strong></span>
+            <button class="btn-wcag" onclick="alterarFonte(2)" aria-label="Aumentar tamanho da letra">A+ Aumentar Texto</button>
+            <button class="btn-wcag" onclick="alterarFonte(-2)" aria-label="Diminuir tamanho da letra">A- Diminuir Texto</button>
+            <button class="btn-wcag" onclick="alternarAltoContraste()" aria-label="Ativar ou desativar alto contraste">⚡ Alto Contraste</button>
+        </div>
+        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/5</div>
+    </div>
+
+    <header>
+        <h1>Memória Viva • Bauru</h1>
+        <p>Plataforma Multimídia Interativa para o Resgate, Centralização e Democratização do Patrimônio Histórico-Cultural da "Cidade Sem Limites"</p>
+    </header>
+
+    <!-- Menu Multipáginas -->
+    <nav class="menu-principal" aria-label="Menu Principal">
+        <a href="index.html" class="ativo">Início</a>
+        <a href="historia.html">História</a>
+        <a href="acervo.html">Acervo & Mapa</a>
+        <a href="colaborar.html">Comunidade</a>
+        <a href="curadoria.html">Painel de Curadoria</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+
+    <main>
+        <!-- APRESENTAÇÃO E JUSTIFICATIVA -->
+        <section class="card-panel">
+            <h2>Bem-vindo ao Memorial Digital de Bauru</h2>
+            <p>
+                Inspirado na visão de Marc Bloch (2001) sobre a história como a <em>"ciência dos homens no tempo"</em> e nos conceitos de História Pública (Almeida; Rovai, 2011), o portal <strong>Memória Viva</strong> reúne em um ambiente único, gratuito e sem obrigatoriedade de cadastro os registros históricos de Bauru que antes encontravam-se dispersos.
+
+
+            <!-- Atalhos Rápidos para as Páginas Separadas -->
+            <div class="grid-cards">
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Cronologia & Multimídia</span>
+                        <h3>História e Linha do Tempo</h3>
+                        <p>Dos povos originários Kaingangs e da emancipação em 1896 à era de ouro da ferrovia e consolidação universitária.</p>
+                        <a href="historia.html" class="botao-acao mt-auto">Abrir Página de História →</a>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Metadados Dublin Core</span>
+                        <h3>Acervo, Turismo, Bairros e Famosos</h3>
+                        <p>Filtre monumentos, bairros, personalidades e pontos turísticos com geolocalização e avaliação por estrelas.</p>
+                        <a href="acervo.html" class="botao-acao mt-auto">Explorar Acervo Completo →</a>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">História Pública & Quiz</span>
+                        <h3>Colaboração e Educação Patrimonial</h3>
+                        <p>Envie relatos e fotografias da sua família (Crowdsourcing com proteção LGPD) ou teste seus conhecimentos no Quiz.</p>
+                        <a href="colaborar.html" class="botao-acao mt-auto">Enviar Relato ou Ver Mural →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- OS 4 EIXOS DA DIVULGAÇÃO HISTÓRICA DE BAURU -->
+        <section class="card-panel">
+            <h2>Integração dos 4 Eixos da Memória Bauruense</h2>
+            <p>A plataforma conecta os quatro canais fundamentais pelos quais a história de Bauru é produzida e preservada:</p>
+            <div class="grid-cards">
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Eixo 1</span>
+                        <h3>Institucional e Técnico</h3>
+                        <p>Documentos oficiais, leis de tombamento e atas do <strong>CODEPAC</strong>, <strong>Prefeitura Municipal</strong>, <strong>Plano Diretor</strong>, <strong>Câmara (SAPL)</strong> e normas do <strong>IPHAN</strong> traduzidos para uma linguagem acessível.</p>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Eixo 2</span>
+                        <h3>Acadêmico e de Preservação</h3>
+                        <p>Pesquisas científicas da <strong>UNESP (FAAC e Projeto Memórias)</strong>, <strong>USP Bauru</strong>, <strong>Museu Ferroviário</strong>, <strong>Museu Histórico</strong>, <strong>Pinacoteca</strong>, <strong>Arquivo Público</strong> e <strong>Biblioteca Rodrigues de Abreu</strong>.</p>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Eixo 3</span>
+                        <h3>Midiático e de Entretenimento</h3>
+                        <p>Reportagens especiais e coberturas visuais de veículos como <strong>Jornal da Cidade</strong>, <strong>G1 Bauru e Marília / TV TEM</strong> e <strong>Social Bauru</strong>, agora preservadas de forma permanente.</p>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Eixo 4</span>
+                        <h3>Comunitário e Afetivo</h3>
+                        <p>Memória coletiva e oral dos moradores, acervos familiares, páginas <strong>Bauru de Antigamente</strong> e <strong>Bauru Ilustrado</strong> (Luciano Dias Pires) e obras de <strong>Célio Losnak</strong> e <strong>Pelegrina & Bastos</strong>.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FERRAMENTA COMPARATIVA "ANTES E DEPOIS" -->
+        <section class="card-panel" id="antes-depois">
+            <h2>Transformação Urbana: Comparador "Antes e Depois"</h2>
+            <p>
+                A preservação do patrimônio gráfico e arquitetônico é essencial para a identidade coletiva (Choay, 2006). Selecione um marco histórico abaixo e arraste o controle deslizante para comparar o passado e o presente de Bauru:
+            </p>
+
+            <div class="filtros-grid">
+                <div>
+                    <label for="seletorMonumento"><strong>Escolha o Patrimônio Histórico:</strong></label>
+                    <select id="seletorMonumento" onchange="trocarMonumentoComparador()">
+                        <option value="estacao">Antiga Estação Ferroviária Central (NOB) — 1939 vs. Atualidade</option>
+                        <option value="praca">Entorno da Praça Machado de Melo e Batista de Carvalho — Década de 1940 vs. Hoje</option>
+                        <option value="milanese">Antigo Hotel Milanese e Centro Histórico — Auge Ferroviário vs. Presente</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sliderComparador"><strong>Arraste para comparar as épocas:</strong></label>
+                    <input type="range" id="sliderComparador" min="0" max="100" value="50" oninput="moverCortina(this.value)" aria-label="Controle deslizante para comparar fotografia antiga e atual">
+                </div>
+            </div>
+
+           <div class="comparador-box">
+                <span class="selo-epoca selo-antes" id="legendaAntes">Estação NOB e Locomotiva (Passado)</span>
+                <span class="selo-epoca selo-depois" id="legendaDepois">Fachada da Estação Central (Hoje)</span>
+                <!-- Imagem Atual (Fundo - Visível na direita) -->
+                <img id="imgDepois" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAXGzlhZCApkcLEeu9VUoC6FxiZcBOhHHOkrQCFJOJ6A&s=10">
+                <!-- Imagem Antiga (Sobreposta - Visível na esquerda e controlada pelo slider) -->
+                <img id="imgAntes" class="img-antes-overlay" src="https://www.projetomuseuferroviario.com.br/wp-content/uploads/2018/01/MFRB03482-810x574.jpg" alt="Visão histórica antiga do monumento em Bauru">
+            </div>
+            <p id="textoComparador" class="text-center mt-2">
+                <strong>Estação Ferroviária Central (NOB):</strong> Inaugurada em 1939, simboliza o apogeu ferroviário paulista e a necessidade constante de restauro e ocupação cultural.
+            </p>
+        </section>
+
+        <!-- CALENDÁRIO CULTURAL CENTRALIZADO -->
+        <section class="card-panel" id="calendario">
+            <h2>Calendário Cultural e de Educação Patrimonial de Bauru</h2>
+            <p>Programação centralizada de eventos históricos, exposições museológicas e roteiros turísticos no município:</p>
+            <div class="grid-cards">
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">1º de Agosto • Anual</span>
+                        <h3>Aniversário de Bauru & Festa do Sanduíche Bauru</h3>
+                        <p><strong>Local:</strong> Parque Vitória Régia. Comemoração da emancipação político-administrativa (1896) com venda beneficente do lanche oficial patrimônio imaterial.</p>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Terça a Domingo • Permanente</span>
+                        <h3>Exposição Memória dos Trilhos</h3>
+                        <p><strong>Local:</strong> Museu Ferroviário Regional (Rua Primeiro de Agosto). Visita guiada às locomotivas, vagões históricos e acervo da Estrada de Ferro Noroeste do Brasil.</p>
+                    </div>
+                </article>
+                <article class="card-item">
+                    <div class="card-item-content">
+                        <span class="ano-tag">Mensal • Roteiro Educativo</span>
+                        <h3>Caminhada Patrimonial pelo Centro Histórico</h3>
+                        <p><strong>Local:</strong> Saída da Estação Central rumo à Praça Machado de Melo, Antigo Hotel Milanese e Calçadão da Batista de Carvalho, promovendo a educação patrimonial in loco.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Projeto Memória Viva</strong> — Curso Técnico em Informática para Internet (Etec Rodrigues de Abreu - Bauru/SP)</p>
+        <p>Autores: Emanuelly Guimarães Venâncio, Luka de Moura Sanches, Samuel Lino Silva e Thales Costas Martins • Orientação: Prof.ª Ana Paula Zaniboni Barreto</p>
+        <p>Envie também relatos e fotos para o e-mail oficial da curadoria: <a href="mailto:memoriavivabauru@gmail.com">memoriavivabauru@gmail.com</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        registrarConquista('visitante', 'Explorador Inicial da Memória Viva');
+
+const dadosComparador = {
+            estacao: {
+                antes: "Era Ferroviária / Locomotivas NOB (Passado)",
+                depois: "Estação Ferroviária Central (Atualidade)",
+                // Coloque aqui a foto antiga da Estação (pode ser um arquivo local ex: 'img/estacao_antiga.jpg')
+                imgAntes: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3nnzndBYc8lI2S_2a0CBxNA-sKL0tCGNr9kFSWJIIof4iUXUVXdZkqiA&s=10",
+                // Coloque aqui a foto atual da Estação (ex: 'img/estacao_atual.jpg')
+                imgDepois: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM63wW1K29NHCESPw6LsiXN3LaZNIoGdquyypXA0PmKw&s=10",
+                desc: "<strong>Estação Ferroviária Central (NOB):</strong> Inaugurada em 1939, simboliza o apogeu ferroviário paulista e a necessidade constante de restauro e ocupação cultural."
+            },
+            praca: {
+                antes: "Centro Antigo e Comércio (Década de 1950)",
+                depois: "Paisagem Urbana de Bauru (Hoje)",
+                imgAntes: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSolHEMrqxJOdt0dTac2zX3rq3DSCrtnwDjZ_c_0xr8qQ&s",
+                imgDepois: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXUnKn0iUbap-ljlyNDjNi0CtM8g-BurxxM_0wCZr1Ig&s=10",
+                desc: "<strong>Entorno da Praça Machado de Melo e Centro:</strong> Antigo ponto de recepção dos passageiros ferroviários que conectava a estação ao comércio da Rua Batista de Carvalho."
+            },
+            milanese: {
+                antes: "Registros da Época Áurea (Século XX)",
+                depois: "Arquitetura e Espaços Culturais Hoje",
+                imgAntes: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTawt4YAiVdaWc14-2CIl6r1J9edskiQyb0dt5vuWiseg&s=10",
+                imgDepois: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFPpDKGOIzlbrFx1vj2v4JvQzmpBs10kjJ0w8vxildog&s=10",
+                desc: "<strong>Patrimônio Edificado do Centro Histórico:</strong> A comparação entre épocas evidencia as transformações urbanas e alerta para a urgência de preservação da memória arquitetônica."
+            }
+        };
+
+        function moverCortina(valor) {
+            document.getElementById('imgAntes').style.clipPath = `polygon(0 0, ${valor}% 0, ${valor}% 100%, 0 100%)`;
+            registrarConquista('comparador', 'Guardião Visual Antes e Depois');
+        }
+
+        function trocarMonumentoComparador() {
+            const chave = document.getElementById('seletorMonumento').value;
+            const item = dadosComparador[chave];
+            document.getElementById('legendaAntes').textContent = item.antes;
+            document.getElementById('legendaDepois').textContent = item.depois;
+            document.getElementById('imgAntes').src = item.imgAntes;
+            document.getElementById('imgDepois').src = item.imgDepois;
+            document.getElementById('textoComparador').innerHTML = item.desc;
+        }
+
+        // Garante que ao abrir a página as duas imagens diferentes sejam carregadas imediatamente
+        window.addEventListener('DOMContentLoaded', trocarMonumentoComparador);
+    </script>
+</body>
+</html>

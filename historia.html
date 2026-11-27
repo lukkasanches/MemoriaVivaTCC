@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História e Linha do Tempo - Memória Viva Bauru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="barra-acessibilidade" role="region" aria-label="Opções de Acessibilidade WCAG">
+        <div class="wcag-controles">
+            <span><strong>Acessibilidade (WCAG 2.2):</strong></span>
+            <button class="btn-wcag" onclick="alterarFonte(2)">A+ Aumentar Texto</button>
+            <button class="btn-wcag" onclick="alterarFonte(-2)">A- Diminuir Texto</button>
+            <button class="btn-wcag" onclick="alternarAltoContraste()">⚡ Alto Contraste</button>
+        </div>
+        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/5</div>
+    </div>
+
+    <header>
+        <h1>História e Linha do Tempo de Bauru</h1>
+        <p>A jornada da "Cidade Sem Limites": dos povos originários e trilhos férreos à capital acadêmica do centro paulista</p>
+    </header>
+
+    <nav class="menu-principal" aria-label="Menu Principal">
+        <a href="index.html">Início</a>
+        <a href="historia.html" class="ativo">História</a>
+        <a href="acervo.html">Acervo & Mapa</a>
+        <a href="colaborar.html">Comunidade</a>
+        <a href="curadoria.html">Painel de Curadoria</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+
+    <main>
+        <!-- SOBRE BAURU E ORIGENS -->
+        <section id="inicio">
+            <h2>Sobre Bauru e Primeiro Povoamento</h2>
+            <p>
+                Localizada estrategicamente no centro-oeste do estado de São Paulo, <strong>Bauru</strong> é um dos mais influentes polos urbanos do interior paulista. Reconhecida historicamente como um crucial entroncamento rodoferroviário, a cidade consolidou-se ao longo das décadas como referência regional em comércio, prestação de serviços, atendimento médico de alta complexidade e educação superior.
+            </p>
+            <p>
+                Antes da chegada dos pioneiros no século XIX, o território bauruense era habitado pelos indígenas <strong>Kaingangs</strong> (historicamente chamados de Coroados). O nome "Bauru" possui raiz Tupi-Guarani ligada à vegetação e às quedas d'água locais nas bacias do Tietê e Aguapeí/Peixe (Pelegrina; Bastos, 2015).
+            </p>
+            <div class="box-destaque">
+                <strong>O Ciclo do Café e a Emancipação (1896):</strong> A partir da segunda metade do século XIX, famílias vindas do leste paulista e de Minas Gerais avançaram em busca de terras férteis para o café. Em <strong>1º de agosto de 1896</strong>, o povoado foi desmembrado de Agudos e elevado à categoria de município autônomo.
+            </div>
+        </section>
+
+        <!-- SELETOR INTERATIVO DE ANOS (DO TIMELINE.HTML) -->
+        <section id="seletor-interativo">
+            <h2>Explorador Interativo por Décadas</h2>
+            <p>Clique em um marco temporal abaixo para inspecionar os detalhes históricos do período:</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <button class="botao-acao" onclick="selecionarAno('1850')">Século XIX (Origens)</button>
+                <button class="botao-acao" onclick="selecionarAno('1896')">1896 (Emancipação)</button>
+                <button class="botao-acao" onclick="selecionarAno('1910')">1905–1939 (Era Ferroviária)</button>
+                <button class="botao-acao" onclick="selecionarAno('1937')">1937 (Sanduíche Bauru)</button>
+                <button class="botao-acao" onclick="selecionarAno('1960')">1950–1980 (Polifonia Urbana & Universidades)</button>
+                <button class="botao-acao" onclick="selecionarAno('2026')">Atualidade</button>
+            </div>
+
+            <article class="box-destaque" id="infoBox" aria-live="polite">
+                <h3 id="anoTitulo">1896 — Emancipação Política de Bauru</h3>
+                <p id="anoTexto">Em 1º de agosto de 1896, Bauru conquista sua autonomia político-administrativa, instalando sua primeira Câmara Municipal e estruturando o núcleo urbano inicial.</p>
+            </article>
+        </section>
+
+        <!-- CRONOLOGIA COMPLETA -->
+        <section id="historia">
+            <h2>Cronologia Histórica Detalhada</h2>
+            <div class="timeline">
+                <div class="historia-card">
+                    <span class="ano-tag">Século XIX</span>
+                    <h3>Território Kaingang e Fundação do Arraial</h3>
+                    <p>Presença ancestral do povo indígena Kaingang e avanço das frentes cafeeiras no sertão paulista, formando o primeiro núcleo urbano ao redor da capela do Divino Espírito Santo.</p>
+                </div>
+                <div class="historia-card">
+                    <span class="ano-tag">1º de Agosto de 1896</span>
+                    <h3>Emancipação Política e Administrativa</h3>
+                    <p>Desmembramento oficial em relação a Agudos e criação do município de Bauru, impulsionado pela expansão agrícola e comercial.</p>
+                </div>
+                <div class="historia-card">
+                    <span class="ano-tag">1905 – 1939</span>
+                    <h3>A Era de Ouro das Ferrovias e a Estação Central</h3>
+                    <p>Bauru torna-se o maior entroncamento ferroviário da América do Sul com a união da <strong>Estrada de Ferro Sorocabana</strong>, <strong>Companhia Paulista</strong> e <strong>Estrada de Ferro Noroeste do Brasil (NOB)</strong>, cujo prédio Art Déco da Estação Central foi inaugurado em 1939.</p>
+                </div>
+                <div class="historia-card">
+                    <span class="ano-tag">1937</span>
+                    <h3>Criação do Sanduíche Bauru por Casimiro Pinto Neto</h3>
+                    <p>No Ponto Chic, em São Paulo, o estudante bauruense Casimiro Pinto Neto cria a receita do lanche que imortalizou o nome da cidade como Patrimônio Imaterial do Estado.</p>
+                </div>
+                <div class="historia-card">
+                    <span class="ano-tag">Décadas de 1950 a 1980</span>
+                    <h3>Urbanização, Imprensa e Polo Universitário (USP e UNESP)</h3>
+                    <p>Período analisado por Célio Losnak (2004) em <em>Polifonia Urbana</em>: transição para o modal rodoviário, efervescência da Rua Batista de Carvalho e fundação dos campi da USP (FOB/Centrinho) e da UNESP.</p>
+                </div>
+                <div class="historia-card">
+                    <span class="ano-tag">Século XXI</span>
+                    <h3>Metrópole Regional e Preservação Digital</h3>
+                    <p>Com quase 400 mil habitantes, Bauru alia inovação tecnológica, saúde e ensino superior ao desafio de preservar seus patrimônios materiais e imateriais através da plataforma Memória Viva.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MULTIMÍDIA: VÍDEO DOCUMENTAL -->
+        <section class="video-container">
+            <h2>Acervo Multimídia: Vídeo sobre a História de Bauru</h2>
+            <p>Assista ao registro audiovisual sobre a formação e curiosidades do município:</p>
+            <div class="ratio ratio-16x9 mt-3">
+                <iframe 
+                    src="https://www.youtube-nocookie.com/embed/qmz4sQKVI2w?si=1yWhChbFterIjCVB"
+                    title="Vídeo Documental sobre a História de Bauru"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Projeto Educacional e Histórico — <strong>Memória Viva Bauru</strong> (Etec Rodrigues de Abreu)</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        registrarConquista('historiador', 'Conhecedor da Linha do Tempo');
+
+        const detalhesAnos = {
+            '1850': {
+                titulo: "Século XIX — Povos Originários Kaingangs e Ciclo do Café",
+                texto: "O território era habitado pelos indígenas Kaingangs (Coroados). Com a chegada dos pioneiros mineiros e paulistas em busca de terra roxa para o café, formaram-se as primeiras fazendas e o arraial."
+            },
+            '1896': {
+                titulo: "1896 — Emancipação Política de Bauru",
+                texto: "Em 1º de agosto de 1896, Bauru conquista sua autonomia político-administrativa, instalando sua primeira Câmara Municipal e estruturando o núcleo urbano inicial."
+            },
+            '1910': {
+                titulo: "1905 a 1939 — O Grande Entroncamento Ferroviário (NOB, Paulista e Sorocabana)",
+                texto: "A convergência de três grandes ferrovias transformou Bauru na porta de entrada para o oeste brasileiro e Bolívia, culminando na construção da Estação Central em 1939."
+            },
+            '1937': {
+                titulo: "1937 — O Sanduíche Bauru (Patrimônio Imaterial)",
+                texto: "Casimiro Pinto Neto ('Bauru'), estudante da Faculdade de Direito do Largo São Francisco, dita ao chapeiro do Ponto Chic a receita com pão francês, rosbife, queijos derretidos na água, tomate e picles."
+            },
+            '1960': {
+                titulo: "Décadas de 1950 a 1980 — Urbanização e Polo Universitário",
+                texto: "Expansão dos bairros, fortalecimento do comércio na Rua Batista de Carvalho, criação do Aeroclube (onde Ozires Silva iniciou na aviação) e instalação da USP Bauru e da UNESP."
+            },
+            '2026': {
+                titulo: "Atualidade — A Cidade Sem Limites e a História Pública",
+                texto: "Bauru consolida-se como metrópole regional do centro-oeste paulista, unindo esforços comunitários, acadêmicos e institucionais para resgatar sua memória histórica."
+            }
+        };
+
+        function selecionarAno(ano) {
+            const info = detalhesAnos[ano];
+            document.getElementById('anoTitulo').textContent = info.titulo;
+            document.getElementById('anoTexto').textContent = info.texto;
+        }
+    </script>
+</body>
+</html>
