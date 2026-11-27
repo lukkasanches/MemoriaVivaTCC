@@ -57,9 +57,10 @@ const CATALOGO_CONQUISTAS = {
     }
 };
 
-// Imagem exibida quando o usuário completa todas as conquistas (pode trocar por um arquivo local, ex: 'img/agradecimento-bauru.jpg')
-const IMAGEM_AGRADECIMENTO_GAMIFICACAO = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bauru_SP.jpg/640px-Bauru_SP.jpg";
-const CHAVE_AGRADECIMENTO_VISTO = 'mv_agradecimento_completo_visto';
+// Imagem exibida quando o usuário completa todas as conquistas
+    const IMAGEM_AGRADECIMENTO_GAMIFICACAO = "./img/agradecimento.jpeg";
+
+    const CHAVE_AGRADECIMENTO_VISTO = "mv_agradecimento_completo_visto";
 
 function obterConquistasValidas() {
     const salvas = JSON.parse(localStorage.getItem('mv_conquistas') || '{}');
@@ -145,7 +146,6 @@ function abrirModalAgradecimento() {
 
             <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; margin-top:18px;">
                 <button type="button" class="botao-acao" onclick="abrirModalConquistas()">🏅 Ver Lista de Conquistas</button>
-                <button type="button" class="btn-wcag" onclick="reiniciarConquistas()">🔄 Reiniciar Conquistas</button>
             </div>
         </div>
     `;
@@ -153,13 +153,6 @@ function abrirModalAgradecimento() {
     document.body.appendChild(overlay);
 }
 
-function reiniciarConquistas() {
-    localStorage.removeItem('mv_conquistas');
-    localStorage.removeItem(CHAVE_AGRADECIMENTO_VISTO);
-    const modalAgradecimento = document.getElementById('modalAgradecimentoOverlay');
-    if (modalAgradecimento) modalAgradecimento.remove();
-    atualizarPainelGamificacao();
-}
 
 function abrirModalConquistas() {
     const modalAgradecimento = document.getElementById('modalAgradecimentoOverlay');
@@ -307,7 +300,7 @@ const acervoDublinCore = [
         dc_coverage_temporal: "1900-1950",
         eixo_documental: "Eixo 1: Institucional e Técnico",
         categoria: "Patrimônio e Monumentos",
-        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSolHEMrqxJOdt0dTac2zX3rq3DSCrtnwDjZ_c_0xr8qQ&s"
+        imagem: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Editatona_Sesc_Bauru_-_Feb_2020_%28016%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original"
     },
     {
         dc_identifier: "DC-BAURU-004",

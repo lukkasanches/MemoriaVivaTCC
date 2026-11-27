@@ -11,17 +11,17 @@
 
     <div class="barra-acessibilidade" role="region" aria-label="Opções de Acessibilidade WCAG">
         <div class="wcag-controles">
-            <span><strong>Acessibilidade (WCAG 2.2):</strong></span>
+            <span><strong>Acessibilidade</strong></span>
             <button class="btn-wcag" onclick="alterarFonte(2)">A+ Aumentar Texto</button>
             <button class="btn-wcag" onclick="alterarFonte(-2)">A- Diminuir Texto</button>
             <button class="btn-wcag" onclick="alternarAltoContraste()">⚡ Alto Contraste</button>
         </div>
-        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/5</div>
+        <div id="statusGamificacao" class="gamificacao-status">🏅 Conquistas Patrimoniais: 0/6</div>
     </div>
 
     <header>
         <h1>Acervo Histórico, Turismo e Personalidades</h1>
-        <p>Catalogação integrada no padrão internacional de metadados Dublin Core com geolocalização e avaliação comunitária</p>
+        <p>Catalogação integrada no padrão internacional de metadados com geolocalização e avaliação comunitária</p>
     </header>
 
     <nav class="menu-principal" aria-label="Menu Principal">
@@ -36,13 +36,13 @@
     <main>
         <!-- SISTEMA DE BUSCA E FILTROS MULTIDIMENSIONAIS -->
         <section class="card-panel">
-            <h2>Pesquisar e Filtrar no Acervo (Padrão Dublin Core)</h2>
-            <p>Utilize os filtros abaixo para localizar monumentos, personalidades, pontos turísticos, bairros e documentos dos 4 eixos:</p>
+            <h2>Pesquisar e Filtrar no Acervo</h2>
+            <p>Utilize os filtros abaixo para localizar monumentos, personalidades, pontos turísticos, bairros, faculdades e documentos dos 4 eixos:</p>
 
             <div class="filtros-grid">
                 <div>
                     <label for="filtroTexto"><strong>Palavra-chave:</strong></label>
-                    <input type="text" id="filtroTexto" placeholder="Ex: Pelé, Ferrovia, Sanduíche, USP..." oninput="renderizarCatalogo()">
+                    <input type="text" id="filtroTexto" placeholder="Ex: Pelé, Ferrovia, USP, UNESP, ITE, Unisagrado..." oninput="renderizarCatalogo()">
                 </div>
                 <div>
                     <label for="filtroCategoria"><strong>Tema / Categoria:</strong></label>
@@ -52,6 +52,7 @@
                         <option value="Personalidades">Personalidades Ligadas a Bauru</option>
                         <option value="Pontos Turísticos">Pontos Turísticos</option>
                         <option value="Bairros e Regiões">Bairros e Regiões</option>
+                        <option value="Faculdades e Universidades">Faculdades e Universidades</option>
                     </select>
                 </div>
                 <div>
@@ -62,7 +63,25 @@
                         <option value="Altos da Cidade">Altos da Cidade</option>
                         <option value="Vila Universitária">Vila Universitária</option>
                         <option value="Jardim Estoril">Jardim Estoril / Jardim Europa</option>
+                        <option value="Jardim Bela Vista">Jardim Bela Vista</option>
+                        <option value="Jardim Panorama">Jardim Panorama</option>
+                        <option value="Vila Coralina">Vila Coralina</option>
+                        <option value="Jardim América">Jardim América</option>
+                        <option value="Jardim Contorno">Jardim Contorno</option>
                         <option value="Vila Falcão / Tibiriçá">Vila Falcão / Tibiriçá (Periferia e Distritos)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="filtroFaculdade"><strong>Faculdade / Universidade:</strong></label>
+                    <select id="filtroFaculdade" onchange="renderizarCatalogo()">
+                        <option value="todos">Todas as Instituições</option>
+                        <option value="USP">USP Bauru (FOB / HRAC-Centrinho)</option>
+                        <option value="UNESP">UNESP Bauru (FAAC / FEB / FC)</option>
+                        <option value="USC / Unisagrado">USC / Unisagrado</option>
+                        <option value="ITE">ITE (Instituição Toledo de Ensino)</option>
+                        <option value="Fatec">Fatec Bauru</option>
+                        <option value="Anhanguera / FIB">Anhanguera / FIB</option>
+                        <option value="Instituição de Ensino Técnico e Superior">Outras Faculdades de Bauru</option>
                     </select>
                 </div>
                 <div>
@@ -82,14 +101,22 @@
 
         <!-- MAPA INTERATIVO COM GEOLOCALIZAÇÃO -->
         <section class="card-panel" id="mapa-patrimonio">
-            <h2>Mapa Interativo do Patrimônio Histórico e Cultural</h2>
-            <p>Selecione um ponto de interesse abaixo para visualizar sua geolocalização exata em Bauru:</p>
+            <h2>Mapa Interativo do Patrimônio Histórico, Bairros e Faculdades</h2>
+            <p>Selecione um ponto de interesse, bairro ou instituição de ensino abaixo para visualizar sua geolocalização em Bauru:</p>
             <div class="d-flex flex-wrap gap-2 mb-3">
                 <button class="botao-acao" onclick="mudarMapa('Estacao+Ferroviaria+Bauru+SP')">📍 Estação Ferroviária Central (NOB)</button>
                 <button class="botao-acao" onclick="mudarMapa('Praca+Machado+de+Melo+Bauru+SP')">📍 Praça Machado de Melo & Calçadão</button>
                 <button class="botao-acao" onclick="mudarMapa('Parque+Vitoria+Regia+Bauru+SP')">📍 Parque Vitória Régia</button>
                 <button class="botao-acao" onclick="mudarMapa('Zoologico+Municipal+de+Bauru+SP')">📍 Zoológico & Jardim Botânico</button>
                 <button class="botao-acao" onclick="mudarMapa('SESC+Bauru+SP')">📍 SESC Bauru</button>
+                <button class="botao-acao" onclick="mudarMapa('USP+Bauru+SP')">🎓 USP Bauru</button>
+                <button class="botao-acao" onclick="mudarMapa('UNESP+Bauru+SP')">🎓 UNESP Bauru</button>
+                <button class="botao-acao" onclick="mudarMapa('Unisagrado+Bauru+SP')">🎓 Unisagrado</button>
+                <button class="botao-acao" onclick="mudarMapa('ITE+Bauru+SP')">🎓 ITE Bauru</button>
+                <button class="botao-acao" onclick="mudarMapa('Fatec+Bauru+SP')">🎓 Fatec Bauru</button>
+                <button class="botao-acao" onclick="mudarMapa('Jardim+Bela+Vista+Bauru+SP')">🏘️ Jardim Bela Vista</button>
+                <button class="botao-acao" onclick="mudarMapa('Jardim+Panorama+Bauru+SP')">🏘️ Jardim Panorama</button>
+                <button class="botao-acao" onclick="mudarMapa('Vila+Coralina+Bauru+SP')">🏘️ Vila Coralina</button>
             </div>
             <div class="map-frame">
                 <iframe
@@ -110,23 +137,551 @@
         <p>&copy; 2026 Projeto Memória Viva — Catalogação Dublin Core e Educação Patrimonial de Bauru</p>
     </footer>
 
-    <script src="script.js"></script>
     <script>
+        /* 1. ACESSIBILIDADE WCAG 2.2 (TAMANHO DE FONTE E ALTO CONTRASTE) */
+        let tamanhoFonteAtual = parseInt(localStorage.getItem('mv_fonte')) || 16;
+        let altoContrasteAtivo = localStorage.getItem('mv_contraste') === 'true';
+
+        function aplicarAcessibilidade() {
+            document.documentElement.style.setProperty('--base-font-size', tamanhoFonteAtual + 'px');
+            if (altoContrasteAtivo) {
+                document.body.classList.add('alto-contraste');
+            } else {
+                document.body.classList.remove('alto-contraste');
+            }
+        }
+
+        function alterarFonte(delta) {
+            tamanhoFonteAtual = Math.min(Math.max(14, tamanhoFonteAtual + delta), 24);
+            localStorage.setItem('mv_fonte', tamanhoFonteAtual);
+            aplicarAcessibilidade();
+        }
+
+        function alternarAltoContraste() {
+            altoContrasteAtivo = !altoContrasteAtivo;
+            localStorage.setItem('mv_contraste', altoContrasteAtivo);
+            aplicarAcessibilidade();
+        }
+
+        /* 2. SISTEMA DE GAMIFICAÇÃO (EDUCAÇÃO PATRIMONIAL - 6 CONQUISTAS + AGRADECIMENTO FINAL) */
+        const CATALOGO_CONQUISTAS = {
+            visitante: {
+                icone: '🏛️',
+                nome: 'Explorador Inicial da Memória Viva',
+                motivo: 'Iniciou sua jornada acessando a página principal do patrimônio de Bauru.'
+            },
+            comparador: {
+                icone: '📸',
+                nome: 'Guardião Visual Antes e Depois',
+                motivo: 'Utilizou o controle deslizante para comparar o passado e o presente urbano.'
+            },
+            historiador: {
+                icone: '📜',
+                nome: 'Conhecedor da Linha do Tempo',
+                motivo: 'Explorou a cronologia histórica e os marcos de formação de Bauru.'
+            },
+            avaliador: {
+                icone: '⭐',
+                nome: 'Avaliador do Patrimônio',
+                motivo: 'Atribuiu estrelas a um registro histórico catalogado no Acervo Dublin Core.'
+            },
+            colaborador: {
+                icone: '🗣️',
+                nome: 'Colaborador da Memória Oral',
+                motivo: 'Enviou um relato ou fotografia comunitária com consentimento da LGPD.'
+            },
+            mestre_quiz: {
+                icone: '🎓',
+                nome: 'Mestre do Quiz de Bauru',
+                motivo: 'Respondeu às 10 questões do Quiz Interativo e conferiu o Gabarito Oficial.'
+            }
+        };
+
+        // Imagem exibida quando o usuário completa todas as conquistas
+        const IMAGEM_AGRADECIMENTO_GAMIFICACAO = "blob:https://web.whatsapp.com/7873e043-ff08-4362-9ea7-8ce31adfbf87";
+        const CHAVE_AGRADECIMENTO_VISTO = 'mv_agradecimento_completo_visto';
+
+        function obterConquistasValidas() {
+            const salvas = JSON.parse(localStorage.getItem('mv_conquistas') || '{}');
+            const validas = {};
+            for (const chave in CATALOGO_CONQUISTAS) {
+                if (salvas[chave]) {
+                    validas[chave] = CATALOGO_CONQUISTAS[chave].nome;
+                }
+            }
+            return validas;
+        }
+
+        function todasConquistasCompletas() {
+            const total = Object.keys(obterConquistasValidas()).length;
+            const maximo = Object.keys(CATALOGO_CONQUISTAS).length;
+            return total >= maximo;
+        }
+
+        function mostrarToastConquista(info, completouTudo = false) {
+            const exibir = () => {
+                const antigo = document.getElementById('toastConquistaAtivo');
+                if (antigo) antigo.remove();
+
+                const toast = document.createElement('div');
+                toast.id = 'toastConquistaAtivo';
+                toast.className = 'toast-conquista';
+                toast.setAttribute('role', 'status');
+                toast.innerHTML = `
+                    <strong>${info.icone} Nova Conquista Desbloqueada!</strong>
+                    <div><strong>${info.nome}</strong></div>
+                    <small>${info.motivo}</small>
+                    ${completouTudo ? `<div style="margin-top:8px;"><button type="button" class="btn-wcag" onclick="abrirModalAgradecimento()">🎉 Ver Mensagem de Agradecimento</button></div>` : ''}
+                `;
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    if (toast.parentNode) toast.remove();
+                }, completouTudo ? 8000 : 5000);
+            };
+
+            if (document.body) {
+                exibir();
+            } else {
+                window.addEventListener('DOMContentLoaded', exibir);
+            }
+        }
+
+        function abrirModalAgradecimento() {
+            const modalConquistas = document.getElementById('modalConquistasOverlay');
+            if (modalConquistas) modalConquistas.remove();
+
+            const existente = document.getElementById('modalAgradecimentoOverlay');
+            if (existente) existente.remove();
+
+            const overlay = document.createElement('div');
+            overlay.id = 'modalAgradecimentoOverlay';
+            overlay.className = 'modal-conquistas-overlay';
+            overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+            overlay.innerHTML = `
+                <div class="modal-conquistas-box modal-agradecimento-box" role="dialog" aria-modal="true" aria-label="Agradecimento por concluir todas as conquistas">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span class="ano-tag" style="margin:0;">🏆 Jornada 100% Concluída (6/6)</span>
+                        <button type="button" class="btn-wcag" onclick="document.getElementById('modalAgradecimentoOverlay').remove()">✕ Fechar</button>
+                    </div>
+
+                    <img
+                        src="${IMAGEM_AGRADECIMENTO_GAMIFICACAO}"
+                        alt="Vista panorâmica de Bauru simbolizando a preservação do patrimônio histórico e cultural"
+                        class="imagem-agradecimento"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <h2 style="margin-top:14px; margin-bottom:10px; font-size:1.5rem;">
+                        💛 Muito obrigado por valorizar a história de Bauru!
+                    </h2>
+                    <p style="margin-bottom:12px;">
+                        Você completou todas as <strong>6 Conquistas Patrimoniais</strong> do projeto <strong>Memória Viva</strong>. Ao explorar nossa linha do tempo, comparar transformações urbanas, avaliar o acervo, participar da comunidade e testar seus conhecimentos no quiz, você ajuda a manter viva a identidade da <em>Cidade Sem Limites</em>.
+                    </p>
+                    <div class="box-destaque" style="margin:14px 0;">
+                        <strong>Guardião da Memória Bauruense:</strong> Continue compartilhando memórias, convidando amigos e explorando os registros históricos da nossa cidade.
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; margin-top:18px;">
+                        <button type="button" class="botao-acao" onclick="abrirModalConquistas()">🏅 Ver Lista de Conquistas</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+        }
+
+        function abrirModalConquistas() {
+            const modalAgradecimento = document.getElementById('modalAgradecimentoOverlay');
+            if (modalAgradecimento) modalAgradecimento.remove();
+
+            const existente = document.getElementById('modalConquistasOverlay');
+            if (existente) existente.remove();
+
+            const desbloqueadas = obterConquistasValidas();
+            const total = Object.keys(desbloqueadas).length;
+            const maximo = Object.keys(CATALOGO_CONQUISTAS).length;
+            const completo = total >= maximo;
+
+            const itensHtml = Object.entries(CATALOGO_CONQUISTAS).map(([chave, info]) => {
+                const ganhou = Boolean(desbloqueadas[chave]);
+                return `
+                    <div class="item-conquista ${ganhou ? '' : 'bloqueada'}">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <strong>${info.icone} ${info.nome}</strong>
+                            <span>${ganhou ? '✅ Desbloqueada' : '🔒 Bloqueada'}</span>
+                        </div>
+                        <small style="display:block; margin-top:4px;">
+                            ${ganhou ? '<strong>Por que você ganhou:</strong> ' : '<strong>Como ganhar:</strong> '}${info.motivo}
+                        </small>
+                    </div>
+                `;
+            }).join('');
+
+            const overlay = document.createElement('div');
+            overlay.id = 'modalConquistasOverlay';
+            overlay.className = 'modal-conquistas-overlay';
+            overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+            overlay.innerHTML = `
+                <div class="modal-conquistas-box" role="dialog" aria-modal="true" aria-label="Suas Conquistas Patrimoniais">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                        <h2 style="margin:0; font-size:1.35rem;">🏅 Conquistas Patrimoniais (${total}/${maximo})</h2>
+                        <button type="button" class="btn-wcag" onclick="document.getElementById('modalConquistasOverlay').remove()">✕ Fechar</button>
+                    </div>
+                    <p style="margin-bottom:15px;">Explore os recursos de educação patrimonial da plataforma para desbloquear todas as insígnias:</p>
+                    ${itensHtml}
+                    ${completo ? `
+                        <div style="margin-top:16px; text-align:right;">
+                            <button type="button" class="botao-acao" onclick="abrirModalAgradecimento()">🎉 Abrir Imagem de Agradecimento</button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        function registrarConquista(chave) {
+            const info = CATALOGO_CONQUISTAS[chave];
+            if (!info) return;
+
+            const conquistas = obterConquistasValidas();
+            const jaTinha = Boolean(conquistas[chave]);
+
+            if (!jaTinha) {
+                conquistas[chave] = info.nome;
+                localStorage.setItem('mv_conquistas', JSON.stringify(conquistas));
+
+                const completouAgora = Object.keys(conquistas).length >= Object.keys(CATALOGO_CONQUISTAS).length;
+                mostrarToastConquista(info, completouAgora);
+
+                if (completouAgora && !localStorage.getItem(CHAVE_AGRADECIMENTO_VISTO)) {
+                    localStorage.setItem(CHAVE_AGRADECIMENTO_VISTO, 'true');
+                    setTimeout(() => {
+                        abrirModalAgradecimento();
+                    }, 900);
+                }
+            }
+
+            atualizarPainelGamificacao();
+        }
+
+        function atualizarPainelGamificacao() {
+            const el = document.getElementById('statusGamificacao');
+            if (!el) return;
+            const conquistas = obterConquistasValidas();
+            const total = Object.keys(conquistas).length;
+            const maximo = Object.keys(CATALOGO_CONQUISTAS).length;
+            const completo = total >= maximo;
+
+            el.innerHTML = completo
+                ? `🏆 Completo: <strong>${total}/${maximo}</strong> (Agradecimento)`
+                : `🏅 Conquistas Patrimoniais: <strong>${total}/${maximo}</strong> (Ver detalhes)`;
+
+            el.setAttribute('role', 'button');
+            el.setAttribute('tabindex', '0');
+            el.title = completo
+                ? 'Parabéns! Clique para ver a mensagem e imagem de agradecimento'
+                : 'Clique para ver quais conquistas você desbloqueou e como ganhar as demais';
+
+            el.onclick = completo ? abrirModalAgradecimento : abrirModalConquistas;
+            el.onkeydown = (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (completo) {
+                        abrirModalAgradecimento();
+                    } else {
+                        abrirModalConquistas();
+                    }
+                }
+            };
+        }
+
+        /* 3. BANCO DE DADOS DUBLIN CORE COMPLETO (OS 4 EIXOS + TURISMO + PERSONALIDADES + BAIRROS + FACULDADES) */
+        const acervoDublinCore = [
+            {
+                dc_identifier: "DC-BAURU-001",
+                dc_title: "Estação Ferroviária Central (Estrada de Ferro Noroeste do Brasil - NOB)",
+                dc_subject: "Patrimônio Arquitetônico e Ferroviário",
+                dc_description: "Símbolo máximo do entroncamento ferroviário que uniu as linhas Noroeste do Brasil (NOB), Sorocabana e Companhia Paulista. Construída em estilo Art Déco e inaugurada em 1939, enfrenta desafios de conservação e restauro, sendo peça-chave da memória ferroviária bauruense.",
+                dc_creator: "Estrada de Ferro Noroeste do Brasil",
+                dc_source: "CODEPAC / IPHAN / Museu Ferroviário Regional de Bauru",
+                dc_date: "1939",
+                dc_coverage_spatial: "Centro",
+                dc_coverage_temporal: "1900-1950",
+                eixo_documental: "Eixo 1: Institucional e Técnico",
+                categoria: "Patrimônio e Monumentos",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM63wW1K29NHCESPw6LsiXN3LaZNIoGdquyypXA0PmKw&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-002",
+                dc_title: "Entorno da Praça Machado de Melo e Rua Batista de Carvalho",
+                dc_subject: "Urbanismo e Memória Coletiva",
+                dc_description: "Porta de entrada histórica para quem desembarcava na Estação Ferroviária. Concentrava os principais hotéis, cafés e o comércio do centro de Bauru entre as décadas de 1920 e 1980, retratado nas obras de Célio Losnak.",
+                dc_creator: "Município de Bauru",
+                dc_source: "FAAC/UNESP / Polifonia Urbana (LOSNAK, 2004)",
+                dc_date: "1920-1980",
+                dc_coverage_spatial: "Centro",
+                dc_coverage_temporal: "1900-1950",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Patrimônio e Monumentos",
+                imagem: "https://socialbauru.com.br/wp-content/uploads/2024/05/praca-machado-mello-bauru2.jpg"
+            },
+            {
+                dc_identifier: "DC-BAURU-003",
+                dc_title: "Antigo Hotel Milanese e Hotel Cariani",
+                dc_subject: "Arquitetura Histórica em Risco",
+                dc_description: "Edifícios históricos que hospedaram viajantes, imigrantes e personalidades (como a passagem clandestina de Che Guevara em 1966). Representam a urgência da salvaguarda contra o abandono de bens patrimoniais no centro antigo.",
+                dc_creator: "Acervo Histórico de Bauru",
+                dc_source: "Atas do CODEPAC / Câmara Municipal (SAPL)",
+                dc_date: "1945",
+                dc_coverage_spatial: "Centro",
+                dc_coverage_temporal: "1900-1950",
+                eixo_documental: "Eixo 1: Institucional e Técnico",
+                categoria: "Patrimônio e Monumentos",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSolHEMrqxJOdt0dTac2zX3rq3DSCrtnwDjZ_c_0xr8qQ&s"
+            },
+            {
+                dc_identifier: "DC-BAURU-004",
+                dc_title: "Museu Ferroviário Regional, Museu Histórico e Pinacoteca Municipal",
+                dc_subject: "Museus e Arquivos Municipais",
+                dc_description: "Rede de instituições públicas que junto à Biblioteca Rodrigues de Abreu e ao Arquivo Público Municipal preservam locomotivas a vapor, fotografias, periódicos e documentos primários da formação de Bauru.",
+                dc_creator: "Secretaria Municipal de Cultura de Bauru",
+                dc_source: "Prefeitura Municipal de Bauru / Projeto Memórias UNESP",
+                dc_date: "1989",
+                dc_coverage_spatial: "Centro",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Patrimônio e Monumentos",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM63wW1K29NHCESPw6LsiXN3LaZNIoGdquyypXA0PmKw&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-005",
+                dc_title: "Pelé e o Bauru Atlético Clube (BAC)",
+                dc_subject: "Personalidades e Esporte",
+                dc_description: "Edson Arantes do Nascimento (Pelé) viveu sua infância e juventude em Bauru a partir dos 4 anos. Foi nos campos do Bauru Atlético Clube (BAC), treinado por Waldemar de Brito, que conquistou títulos juvenis antes de brilhar no Santos FC e na Seleção.",
+                dc_creator: "Imprensa Bauruense",
+                dc_source: "Jornal da Cidade de Bauru / G1 Bauru e Marília / Social Bauru",
+                dc_date: "1950",
+                dc_coverage_spatial: "Centro",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 3: Midiático e de Entretenimento",
+                categoria: "Personalidades",
+                imagem: "https://conteudo.imguol.com.br/c/esporte/d4/2022/05/11/pele-1652290787737_v2_750x768.jpg"
+            },
+            {
+                dc_identifier: "DC-BAURU-006",
+                dc_title: "Casimiro Pinto Neto e o Sanduíche Bauru (Patrimônio Imaterial)",
+                dc_subject: "Cultura e Gastronomia",
+                dc_description: "Estudante bauruense que em 1937, no restaurante Ponto Chic em São Paulo, criou a receita original no pão francês sem miolo com rosbife, queijos derretidos em banho-maria, tomate e picles. Declarado Patrimônio Imaterial do Estado de SP.",
+                dc_creator: "Casimiro Pinto Neto",
+                dc_source: "Acervo Bauru Ilustrado (Luciano Dias Pires) / Câmara Municipal",
+                dc_date: "1937",
+                dc_coverage_spatial: "Centro",
+                dc_coverage_temporal: "1900-1950",
+                eixo_documental: "Eixo 4: Comunitário e Afetivo",
+                categoria: "Personalidades",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3nnzndBYc8lI2S_2a0CBxNA-sKL0tCGNr9kFSWJIIof4iUXUVXdZkqiA&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-007",
+                dc_title: "Marcos Pontes e Ozires Silva: A Vocação Aeroespacial",
+                dc_subject: "Ciência, Aviação e Tecnologia",
+                dc_description: "Bauru é berço da paixão aeronáutica do engenheiro Ozires Silva (fundador da Embraer, que iniciou seus voos no Aeroclube de Bauru) e terra natal de Marcos Pontes, primeiro astronauta brasileiro a ir à Estação Espacial Internacional (ISS) em 2006.",
+                dc_creator: "Aeroclube de Bauru / Memória Local",
+                dc_source: "Social Bauru / TV TEM / Jornal da Cidade",
+                dc_date: "2006",
+                dc_coverage_spatial: "Jardim Estoril",
+                dc_coverage_temporal: "1991-Atualidade",
+                eixo_documental: "Eixo 3: Midiático e de Entretenimento",
+                categoria: "Personalidades",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS8Du5slNk8GWf3anR65SAYzOjGBdOo-Uu4nAeUPTIrA&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-008",
+                dc_title: "Parque Vitória Régia, Zoológico Municipal e Jardim Botânico",
+                dc_subject: "Turismo, Lazer e Meio Ambiente",
+                dc_description: "Conjunto dos principais cartões-postais turísticos de Bauru: o anfiteatro do Parque Vitória Régia (palco de eventos culturais e da festa de aniversário da cidade), o renomado Zoológico Municipal e a reserva de mata nativa do Jardim Botânico.",
+                dc_creator: "Prefeitura Municipal de Bauru",
+                dc_source: "Portal Oficial da Prefeitura de Bauru / Plano Diretor",
+                dc_date: "1980-2026",
+                dc_coverage_spatial: "Altos da Cidade",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 1: Institucional e Técnico",
+                categoria: "Pontos Turísticos",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXUnKn0iUbap-ljlyNDjNi0CtM8g-BurxxM_0wCZr1Ig&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-009",
+                dc_title: "Vila Universitária (USP/Centrinho), UNESP e SESC Bauru",
+                dc_subject: "Educação Superior e Cultura",
+                dc_description: "Consolidação de Bauru como capital acadêmica e cultural do centro-oeste paulista a partir da instalação da USP Bauru (FOB e Centrinho), do amplo campus da UNESP (FAAC, FEB e FC) e do centro multicultural do SESC Bauru.",
+                dc_creator: "Comunidade Acadêmica Bauruense",
+                dc_source: "Repositório Institucional UNESP / USP Bauru",
+                dc_date: "1962-2026",
+                dc_coverage_spatial: "Vila Universitária",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Bairros e Regiões",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFPpDKGOIzlbrFx1vj2v4JvQzmpBs10kjJ0w8vxildog&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-010",
+                dc_title: "Memória dos Bairros: Vila Falcão, Distrito de Tibiriçá, Bela Vista e Estoril",
+                dc_subject: "História dos Bairros e Periferias",
+                dc_description: "Das origens indígenas Kaingangs em Tibiriçá e dos bairros operários ferroviários como Vila Falcão e Bela Vista até a expansão moderna do Jardim Estoril e Jardim Europa, preservados pelas páginas 'Bauru de Antigamente' e 'Bauru Ilustrado'.",
+                dc_creator: "Pelegrina & Bastos (2015) / Comunidade Bauruense",
+                dc_source: "Bauru de Antigamente / Bauru Ilustrado / Origens Históricas (2015)",
+                dc_date: "1896-2026",
+                dc_coverage_spatial: "Vila Falcão / Tibiriçá",
+                dc_coverage_temporal: "Século XIX",
+                eixo_documental: "Eixo 4: Comunitário e Afetivo",
+                categoria: "Bairros e Regiões",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSez4El_QKwstpSN5ojn4NOlJqWH_QcIskAa0__6O86Ew&s=10"
+            },
+{
+                dc_identifier: "DC-BAURU-011",
+                dc_title: "USP Bauru (FOB e HRAC-Centrinho)",
+                dc_subject: "Ensino Superior, Odontologia e Saúde",
+                dc_description: "Campus da Universidade de São Paulo em Bauru, referência nacional e internacional em odontologia (FOB) e no tratamento de fissuras labiopalatinas e anomalias craniofaciais (HRAC-Centrinho).",
+                dc_creator: "Universidade de São Paulo",
+                dc_source: "USP Bauru / Acervo Acadêmico",
+                dc_date: "1962-2026",
+                dc_coverage_spatial: "Vila Universitária",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Faculdades e Universidades",
+                faculdade: "USP",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxT6kbcY1gMnIo9fZmAjRQGY-CgPh__lPNkBExw9mlyA&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-012",
+                dc_title: "UNESP Bauru (FAAC, FEB e FC)",
+                dc_subject: "Ensino Superior, Comunicação, Engenharias e Ciências",
+                dc_description: "Campus da Universidade Estadual Paulista em Bauru, reunindo as faculdades de Arquitetura, Artes e Comunicação (FAAC), Engenharia (FEB) e Ciências (FC) e forte produção de pesquisa e extensão.",
+                dc_creator: "Universidade Estadual Paulista",
+                dc_source: "Repositório Institucional UNESP",
+                dc_date: "1976-2026",
+                dc_coverage_spatial: "Vila Universitária",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Faculdades e Universidades",
+                faculdade: "UNESP",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScT3dF3KqZrMBUUWgkdAtlt_Z55i896qkvHaSQUOPje0vZxruVWD4lvhnb&s=10"
+            },          
+            {
+                dc_identifier: "DC-BAURU-013",
+                dc_title: "Unisagrado (Antiga USC — Universidade do Sagrado Coração)",
+                dc_subject: "Educação Superior e História Local",
+                dc_description: "Tradicional instituição de ensino superior de Bauru, originada da Universidade do Sagrado Coração (USC), com forte presença na formação de profissionais de saúde, humanas, exatas e sociais.",
+                dc_creator: "Unisagrado",
+                dc_source: "Acervo Histórico e Acadêmico de Bauru",
+                dc_date: "1953-2026",
+                dc_coverage_spatial: "Jardim América",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Faculdades e Universidades",
+                faculdade: "USC / Unisagrado",
+                imagem: "https://socialbauru.com.br/wp-content/uploads/2024/05/unisagrado-bauru-cursos-2021.jpg"
+            },
+            {
+                dc_identifier: "DC-BAURU-014",
+                dc_title: "ITE — Instituição Toledo de Ensino",
+                dc_subject: "Ensino Jurídico e Acadêmico",
+                dc_description: "Instituição tradicional de ensino superior de Bauru, amplamente reconhecida na região pela formação jurídica e pela participação na vida acadêmica e cultural do município.",
+                dc_creator: "Instituição Toledo de Ensino",
+                dc_source: "Memória Acadêmica de Bauru",
+                dc_date: "1952-2026",
+                dc_coverage_spatial: "Vila Coralina",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 2: Acadêmico e de Preservação",
+                categoria: "Faculdades e Universidades",
+                faculdade: "ITE",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQscI3fly6qz_ybh6FDQAYT0Oa1Lge20deMOClCmiemnw&s=10"
+            },
+            {
+                dc_identifier: "DC-BAURU-015",
+                dc_title: "Fatec Bauru e Polo de Ensino Superior e Técnico",
+                dc_subject: "Educação Tecnológica e Profissional",
+                dc_description: "Faculdade de Tecnologia do Estado de São Paulo em Bauru, voltada à formação tecnológica superior e ao desenvolvimento profissional da região.",
+                dc_creator: "Centro Paula Souza / Fatec Bauru",
+                dc_source: "Portal Educacional de Bauru",
+                dc_date: "2000-2026",
+                dc_coverage_spatial: "Jardim Panorama",
+                dc_coverage_temporal: "1991-Atualidade",
+                eixo_documental: "Eixo 1: Institucional e Técnico",
+                categoria: "Faculdades e Universidades",
+                faculdade: "Fatec",
+                imagem: "https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/51/2023/08/WhatsApp-Image-2021-08-12-at-16.49.19.jpeg"
+            },
+            {
+                dc_identifier: "DC-BAURU-016",
+                dc_title: "Jardim Bela Vista, Jardim Panorama e Vila Coralina",
+                dc_subject: "Bairros, Crescimento Urbano e Cotidiano",
+                dc_description: "Bairros que integram a malha urbana de Bauru e refletem a expansão residencial, comercial e estudantil da cidade ao longo das últimas décadas.",
+                dc_creator: "Comunidade Bauruense",
+                dc_source: "Prefeitura Municipal de Bauru / Bauru de Antigamente",
+                dc_date: "1950-2026",
+                dc_coverage_spatial: "Jardim Bela Vista",
+                dc_coverage_temporal: "1951-1990",
+                eixo_documental: "Eixo 4: Comunitário e Afetivo",
+                categoria: "Bairros e Regiões",
+                faculdade: "Instituição de Ensino Técnico e Superior",
+                imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSez4El_QKwstpSN5ojn4NOlJqWH_QcIskAa0__6O86Ew&s=10"
+            }
+        ];
+
+        /* 4. AVALIAÇÃO POR ESTRELAS (1 A 5 ESTRELAS SEM VOTOS INFINITOS) */
+        function obterAvaliacao(id) {
+            const salvas = JSON.parse(localStorage.getItem('mv_avaliacoes') || '{}');
+            return salvas[id] || { soma: 5, votos: 1 };
+        }
+
+        function obterMeuVoto(id) {
+            const meusVotos = JSON.parse(localStorage.getItem('mv_meus_votos') || '{}');
+            return meusVotos[id] || null;
+        }
+
+        function votarEstrela(id, notaEscolhida) {
+            const salvas = JSON.parse(localStorage.getItem('mv_avaliacoes') || '{}');
+            const meusVotos = JSON.parse(localStorage.getItem('mv_meus_votos') || '{}');
+
+            const atual = salvas[id] || { soma: 5, votos: 1 };
+            const votoAnterior = meusVotos[id];
+
+            if (votoAnterior) {
+                atual.soma = atual.soma - votoAnterior + notaEscolhida;
+            } else {
+                atual.soma += notaEscolhida;
+                atual.votos += 1;
+            }
+
+            meusVotos[id] = notaEscolhida;
+            salvas[id] = atual;
+
+            localStorage.setItem('mv_avaliacoes', JSON.stringify(salvas));
+            localStorage.setItem('mv_meus_votos', JSON.stringify(meusVotos));
+
+            registrarConquista('avaliador');
+            renderizarCatalogo();
+        }
+
         function renderizarCatalogo() {
             const texto = document.getElementById('filtroTexto').value.toLowerCase();
             const categoria = document.getElementById('filtroCategoria').value;
             const bairro = document.getElementById('filtroBairro').value;
+            const faculdade = document.getElementById('filtroFaculdade').value;
             const eixo = document.getElementById('filtroEixo').value;
             const container = document.getElementById('gridCatalogo');
 
             const filtrados = acervoDublinCore.filter(item => {
-                const bateTexto = item.dc_title.toLowerCase().includes(texto) ||
-                                  item.dc_description.toLowerCase().includes(texto) ||
-                                  item.dc_source.toLowerCase().includes(texto);
+                const textoItem = `${item.dc_title} ${item.dc_description} ${item.dc_source} ${item.dc_coverage_spatial} ${item.faculdade || ''}`.toLowerCase();
+                const bateTexto = textoItem.includes(texto);
                 const bateCat = categoria === 'todos' || item.categoria === categoria;
                 const bateBairro = bairro === 'todos' || item.dc_coverage_spatial === bairro;
+                const bateFaculdade = faculdade === 'todos' || (item.faculdade && item.faculdade === faculdade);
                 const bateEixo = eixo === 'todos' || item.eixo_documental === eixo;
-                return bateTexto && bateCat && bateBairro && bateEixo;
+                return bateTexto && bateCat && bateBairro && bateFaculdade && bateEixo;
             });
 
             if (filtrados.length === 0) {
@@ -134,12 +689,11 @@
                 return;
             }
 
-        container.innerHTML = filtrados.map(item => {
+            container.innerHTML = filtrados.map(item => {
                 const av = obterAvaliacao(item.dc_identifier);
                 const meuVoto = obterMeuVoto(item.dc_identifier);
                 const media = (av.soma / av.votos).toFixed(1);
 
-                // Gera as 5 estrelas clicáveis (de 1 a 5)
                 let botoesEstrelas = '';
                 for (let n = 1; n <= 5; n++) {
                     const preenchida = meuVoto ? (n <= meuVoto) : false;
@@ -156,7 +710,7 @@
                         <p>${item.dc_description}</p>
                         <div class="mt-2 mb-2" style="font-size: 0.85rem; color: var(--text-light);">
                             <div><strong>Eixo:</strong> ${item.eixo_documental}</div>
-                            <div><strong>Fonte (Dublin Core):</strong> ${item.dc_source}</div>
+                            <div><strong>Fonte:</strong> ${item.dc_source}</div>
                             <div><strong>ID:</strong> ${item.dc_identifier}</div>
                         </div>
                         <div class="estrelas-box">
@@ -176,7 +730,12 @@
             document.getElementById('iframeMapa').src = `https://www.google.com/maps?q=${consulta}&output=embed`;
         }
 
-        window.addEventListener('DOMContentLoaded', renderizarCatalogo);
+        window.addEventListener('DOMContentLoaded', () => {
+            aplicarAcessibilidade();
+            atualizarPainelGamificacao();
+            renderizarCatalogo();
+        });
     </script>
 </body>
 </html>
+```[cite: 1, 9]
